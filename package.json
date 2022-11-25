@@ -1,0 +1,38 @@
+{
+  "name": "tokio-marine-insurance",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "i18n-extract": "i18next --silent --output 'src/locales/ja/translations.json' 'src/**/*.{js,jsx,ts,tsx}'",
+    "proxy": "env $(cat .env) nodemon src/proxy.js"
+  },
+  "dependencies": {
+    "@types/lodash": "^4.14.190",
+    "chart.js": "^4.0.1",
+    "http-proxy": "^1.18.1",
+    "i18next": "^22.0.6",
+    "i18next-parser": "^7.0.3",
+    "lodash": "^4.17.21",
+    "nodemon": "^2.0.20",
+    "react": "^18.2.0",
+    "react-chartjs-2": "^5.0.1",
+    "react-datepicker": "^4.8.0",
+    "react-dom": "^18.2.0",
+    "react-i18next": "^12.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.24",
+    "@types/react-datepicker": "^4.8.0",
+    "@types/react-dom": "^18.0.8",
+    "@vitejs/plugin-react": "^2.2.0",
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.19",
+    "tailwindcss": "^3.2.4",
+    "typescript": "^4.6.4",
+    "vite": "^3.2.3"
+  }
+}
