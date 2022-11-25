@@ -3,7 +3,7 @@ import { SelectInput } from "./components/SelectInput";
 import { Table, TableCell, TableRow } from "./components/Table";
 import { TextInput } from "./components/TextInput";
 import { t } from "./i18nConfig";
-import { calcultaedFieldNames, fieldNames, selectOptions } from "./utils";
+import { calculatedFieldName, fieldNames, selectOptions } from "./utils";
 
 interface Props {
   handleInputChange: (fieldName: string, value: any) => void;
@@ -63,11 +63,78 @@ export const SalesInformation = (props: Props) => {
           <TableRow>
             <TableCell bold>{t("Total")}</TableCell>
             <TableCell bold>
-              {calculatedData[calcultaedFieldNames.totalSales]}{" "}
+              {calculatedData[calculatedFieldName.totalSales]}{" "}
               {t("thousand yen")}
             </TableCell>
           </TableRow>
         </Table>
+
+        <h1 className="text-lg my-4">{t("Special Terms")}</h1>
+        <SelectInput
+          options={selectOptions.specialTermsClauses}
+          label={t("Lawyer's Fees, etc. Special Covenant")}
+          onChange={partial(
+            handleInputChange,
+            fieldNames.selectLawyerFeesCovenantClause
+          )}
+          value={inputData[fieldNames.selectLawyerFeesCovenantClause]}
+        />
+        <SelectInput
+          options={selectOptions.specialTermsClauses}
+          label={t("Service User Search Expense Guarantee Clause")}
+          onChange={partial(
+            handleInputChange,
+            fieldNames.selectServiceUserSearchClause
+          )}
+          value={inputData[fieldNames.selectServiceUserSearchClause]}
+        />
+        <SelectInput
+          options={selectOptions.specialTermsClauses}
+          label={t(
+            "Special Clause for Covering Expenses for Specific Infectious Diseases"
+          )}
+          onChange={partial(
+            handleInputChange,
+            fieldNames.selectInfectiousDiseaseClause
+          )}
+          value={inputData[fieldNames.selectInfectiousDiseaseClause]}
+        />
+        <SelectInput
+          options={selectOptions.specialTermsClauses}
+          label={t("Victim medical expenses guarantee clause")}
+          onChange={partial(
+            handleInputChange,
+            fieldNames.selectVictimMedicalExpenseClause
+          )}
+          value={inputData[fieldNames.selectVictimMedicalExpenseClause]}
+        />
+        <SelectInput
+          options={selectOptions.specialTermsClauses}
+          label={t("Litigation cost guarantee clause")}
+          onChange={partial(
+            handleInputChange,
+            fieldNames.selectLitigationCostClause
+          )}
+          value={inputData[fieldNames.selectLitigationCostClause]}
+        />
+        <SelectInput
+          options={selectOptions.specialTermsClauses}
+          label={t("Initial support cost guarantee clause")}
+          onChange={partial(
+            handleInputChange,
+            fieldNames.selectInitialSupportCaluse
+          )}
+          value={inputData[fieldNames.selectInitialSupportCaluse]}
+        />
+        <SelectInput
+          options={selectOptions.specialTermsClauses}
+          label={t("Designated manager special agreement")}
+          onChange={partial(
+            handleInputChange,
+            fieldNames.selectManagerSpecialAgreementClause
+          )}
+          value={inputData[fieldNames.selectManagerSpecialAgreementClause]}
+        />
       </div>
       <div className="flex-1 px-2">
         <h1 className="text-lg mb-4">{t("Basic Contract")}</h1>
@@ -116,7 +183,7 @@ export const SalesInformation = (props: Props) => {
               <TableCell bold>
                 {
                   calculatedData[
-                    calcultaedFieldNames.nusingPaymentLimitDuringPeriod
+                    calculatedFieldName.nusingPaymentLimitDuringPeriod
                   ]
                 }{" "}
                 {t("thousand yen")}
@@ -127,7 +194,7 @@ export const SalesInformation = (props: Props) => {
               <TableCell bold>
                 {
                   calculatedData[
-                    calcultaedFieldNames.nursingDeductibleAmountAccident
+                    calculatedFieldName.nursingDeductibleAmountAccident
                   ]
                 }
                 {t("thousand yen")}
@@ -135,7 +202,72 @@ export const SalesInformation = (props: Props) => {
             </TableRow>
           </Table>
         </div>
+
+        <h3 className="mt-3">{t("Property accident under management")}</h3>
+        <Table>
+          <TableRow>
+            <TableCell bold>{t("Payment limit (1 accident)")}</TableCell>
+            <TableCell>3,000 {t("thousand yen")}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell bold>
+              {t("Currency and banknote payment limit (1 accident)")}
+            </TableCell>
+            <TableCell>300 {t("thousand yen")}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell bold>{t("Deductible amount (1 accident)")}</TableCell>
+            <TableCell>{calculatedData[calculatedFieldName.managedPropertyDeductibleAmount]} {t("thousand yen")}</TableCell>
+          </TableRow>
+        </Table>
+
+        <h3 className="mt-3">{t("Human rights violation accident")}</h3>
+        <Table>
+          <TableRow>
+            <TableCell bold>
+              {t("Payment limit (1 request/during period)")}
+            </TableCell>
+            <TableCell>3,000 {t("thousand yen")}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell bold>{t("Waiver amount (1 request)")}</TableCell>
+            <TableCell>{calculatedData[calculatedFieldName.managedPropertyDeductibleAmount]} {t("thousand yen")}</TableCell>
+          </TableRow>
+        </Table>
+
+        <h3 className="mt-3">{t("Accident that inhibits use when missing")}</h3>
+        <Table>
+          <TableRow>
+            <TableCell bold>
+              {t("Payment limit (for one accident/period)")}
+            </TableCell>
+            <TableCell>10,000 {t("thousand yen")}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell bold>{t("Deductible amount (1 accident)")}</TableCell>
+            <TableCell>0 {t("thousand yen")}</TableCell>
+          </TableRow>
+        </Table>
+
+        <SelectInput
+          options={selectOptions.accidentsPaymentLimit}
+          label={t("Payment limit (1 request/during period) (1,000 yen)")}
+          onChange={partial(
+            handleInputChange,
+            fieldNames.accidentsPaymentLimit
+          )}
+          value={inputData[fieldNames.accidentsPaymentLimit]}
+        />
+
+        <h3 className="mt-3">{t("Economic accident")}</h3>
+        <Table>
+          <TableRow>
+            <TableCell bold>{t("Waiver amount (1 request)")}</TableCell>
+            <TableCell>0 {t("thousand yen")}</TableCell>
+          </TableRow>
+        </Table>
       </div>
+
       <div className="flex-1 pl-2">
         <h1 className="text-lg mb-4">{t("Other Special Agreements")}</h1>
 
@@ -161,7 +293,7 @@ export const SalesInformation = (props: Props) => {
           </TableRow>
         </Table>
 
-        <p className="mt-3">{t("[Economic damage]")}</p>
+        <h3 className="mt-3">{t("[Economic damage]")}</h3>
         <Table>
           <TableRow>
             <TableCell>{t("Payment limit (1 accident)")}</TableCell>
@@ -176,6 +308,120 @@ export const SalesInformation = (props: Props) => {
             <TableCell>0 {t("thousand yen")}</TableCell>
           </TableRow>
         </Table>
+
+        {inputData[fieldNames.selectLitigationCostClause] === "○" && (
+          <>
+            <h3 className="my-3">
+              {t("Service User Search Expense Guarantee Special Contract")}
+            </h3>
+            <Table>
+              <TableRow>
+                <TableCell>{t("Payment limit (1 person)")}</TableCell>
+                <TableCell>200 {t("thousand yen")}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>{t("Payment limit (1 accident)")}</TableCell>
+                <TableCell>1,000 {t("thousand yen")}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>
+                  {t("Reward payment limit (1 person/1 company)")}
+                </TableCell>
+                <TableCell>5 {t("thousand yen")}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>{t("Deductible amount (1 accident)")}</TableCell>
+                <TableCell>0 {t("thousand yen")}</TableCell>
+              </TableRow>
+            </Table>
+          </>
+        )}
+
+        {inputData[fieldNames.selectLitigationCostClause] === "○" && (
+          <>
+            <h3 className="my-3">
+              {t("Specified Infectious Diseases Coverage Special Contract")}
+            </h3>
+            <Table>
+              <TableRow>
+                <TableCell>{t("Payment limit (1 accident)")}</TableCell>
+                <TableCell>1,000 {t("thousand yen")}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>{t("Deductible amount (1 accident)")}</TableCell>
+                <TableCell>0 {t("thousand yen")}</TableCell>
+              </TableRow>
+            </Table>
+          </>
+        )}
+
+        {inputData[fieldNames.selectLitigationCostClause] === "○" && (
+          <>
+            <h3 className="my-3">
+              {t("Victim treatment cost guarantee rider")}
+            </h3>
+            <Table>
+              <TableRow>
+                <TableCell>{t("Payment limit (1 person)")}</TableCell>
+                <TableCell>500 {t("thousand yen")}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>
+                  {t("Payment limit (for one accident/period)")}
+                </TableCell>
+                <TableCell>10,000 {t("thousand yen")}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>{t("Deductible amount (1 accident)")}</TableCell>
+                <TableCell>0 {t("thousand yen")}</TableCell>
+              </TableRow>
+            </Table>
+          </>
+        )}
+
+        {inputData[fieldNames.selectLitigationCostClause] === "○" && (
+          <>
+            <h3 className="my-3">{t("Litigation cost guarantee clause")}</h3>
+            <Table>
+              <TableRow>
+                <TableCell>{t("Payment limit (1 accident/1 claim)")}</TableCell>
+                <TableCell>10,000 {t("thousand yen")}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>
+                  {t("Deductible amount (1 accident/1 claim)")}
+                </TableCell>
+                <TableCell>0 {t("thousand yen")}</TableCell>
+              </TableRow>
+            </Table>
+          </>
+        )}
+
+        {inputData[fieldNames.selectInitialSupportCaluse] === "○" && (
+          <>
+            <h3 className="my-3">
+              {t("Initial support cost guarantee rider")}
+            </h3>
+            <Table>
+              <TableRow>
+                <TableCell>{t("Payment limit (1 accident/1 claim)")}</TableCell>
+                <TableCell>10,000 {t("thousand yen")}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>
+                  {t("Physical disability visit fee (1 person)")}
+                </TableCell>
+                <TableCell>100 {t("thousand yen")}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>
+                  {t("Deductible amount (1 accident/1 claim)")}
+                </TableCell>
+                <TableCell>0 {t("thousand yen")}</TableCell>
+              </TableRow>
+            </Table>
+          </>
+        )}
       </div>
     </div>
   );

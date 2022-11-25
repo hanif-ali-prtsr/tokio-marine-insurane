@@ -7,12 +7,29 @@ export const fieldNames = {
   numberOfPayments: "TYPE_WSELECTIPUT_4822d8b5c0864277a4804c7626622554",
   paymentMethod2: "TYPE_WSELECTIPUT_2acebd980de444b09c40d11905def955",
 
+  // Basic Figures
   salesFacilityOperations: "TYPE_WTEXTINPUT_82efab32847447709b0588a28edd66f4",
   salesHomeVisit: "TYPE_WTEXTINPUT_4b23a0c0a08343478742a67c0533f912",
   salesHomeVisitNursing: "TYPE_WTEXTINPUT_3d7e2a733a0045148a081e66c635d5df",
   salesInHomeCare: "TYPE_WTEXTINPUT_1db355f4d01d4effbf244e94a87ca406",
   netSaleWelfareEquipment: "TYPE_WTEXTINPUT_8ac8cab99e43424886417b57587080d1",
   netSaleHomeRenovation: "TYPE_WTEXTINPUT_2fd5c1c81f9a47028d1c6f3371f0b12d",
+
+  // Special Terms
+  selectLawyerFeesCovenantClause:
+    "TYPE_WSELECTIPUT_c9a9e9ee28684662b078c8404b4f66a8",
+  selectServiceUserSearchClause:
+    "TYPE_WSELECTIPUT_fc66f8b1d2c149b48f5de6e446ce30d6",
+  selectInfectiousDiseaseClause:
+    "TYPE_WSELECTIPUT_89e93fe499a54de6b8941412f808042f",
+  selectVictimMedicalExpenseClause:
+    "TYPE_WSELECTIPUT_65da73c147084302801dcce665e51afb",
+  selectLitigationCostClause:
+    "TYPE_WSELECTIPUT_6a697babcf4647e7901f21fe7af1837d",
+  selectInitialSupportCaluse:
+    "TYPE_WTEXTINPUT_9f3d11cd48da4bf8b2688c912c29986d",
+  selectManagerSpecialAgreementClause:
+    "TYPE_WSELECTIPUT_1c9810133b7d42ebbe462dea0225a893",
 
   basicContractPaymentLimit:
     "TYPE_WSELECTIPUT_76c8fe88a23446668b21d6e166290da6",
@@ -23,11 +40,14 @@ export const fieldNames = {
   accidentsPaymentLimit: "TYPE_WSELECTIPUT_1f26a5fccfd34b87a5cb32d1901a4abb",
 };
 
-export const calcultaedFieldNames = {
-  nusingPaymentLimitDuringPeriod: "UpperLimit_HomeNursing_Liability_PerIncident",
-  nursingDeductibleAmountAccident: "Deductible_HomeNursing_Liability_PerIncident",
+export const calculatedFieldName = {
+  nusingPaymentLimitDuringPeriod:
+    "UpperLimit_HomeNursing_Liability_PerIncident",
+  nursingDeductibleAmountAccident:
+    "Deductible_HomeNursing_Liability_PerIncident",
   managedPropertyDeductibleAmount: "PropertyAccident_Deductible_PerIncident",
-  humanRightsViolationDeductibleAmount: "PropertyAccident_Deductible_PerIncident",
+  humanRightsViolationDeductibleAmount:
+    "PropertyAccident_Deductible_PerIncident",
   totalSales: "total_sales",
 };
 
@@ -107,4 +127,10 @@ export const selectOptions = {
     { label: "50,000", value: 50000 },
     { label: "100,000", value: 100000 },
   ],
+  specialTermsClauses: [{ label: "○", value: "○" }],
+
+  accidentsPaymentLimit: [
+    {label: "10,000", value: 10000},
+    {label: "100,000", value: 100000},
+  ]
 };

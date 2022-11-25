@@ -22,7 +22,7 @@ export const TableRow = (props: PropsWithChildren) => {
 
 export const TableCell = (props: PropsWithChildren & { bold?: boolean }) => {
   const { bold = false } = props;
-  const className = `px-6 py-4 text-sm ext-gray-900 ${
+  const className = `px-6 py-2 text-sm ext-gray-900 ${
     bold ? "font-medium" : ""
   }`;
 

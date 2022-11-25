@@ -5,6 +5,7 @@ import Button from "./components/Button";
 import { t } from "./i18nConfig";
 import { PremiumOutput } from "./PremiumOutput";
 import { SalesInformation } from "./SalesInformation";
+import LoadingOverlay from "react-loading-overlay";
 
 const urls = new QuoteUrls(
   "http://localhost:10000",
@@ -18,7 +19,7 @@ export const QuoteForm = () => {
   const [inputData, setInputData] = useState<Record<any, any>>({});
 
   const handleInputChange = async (fieldName: string, value: any) => {
-    console.log({fieldName, value})
+    console.log({ fieldName, value });
     const newInputData = { ...inputData, [fieldName]: value };
     setInputData(newInputData);
     const newQuote = await (
@@ -52,26 +53,39 @@ export const QuoteForm = () => {
   }, []);
 
   return (
-    <div className="mt-6 w-full">
-      <BasicInformation
-        inputData={inputData}
-        handleInputChange={handleInputChange}
-      />
-      <SalesInformation
-        inputData={inputData}
-        calculatedData={quote.calculatedData ?? {}}
-        handleInputChange={handleInputChange}
-      />
-
-      <div className="mt-8 w-1/2 mx-auto text-center">
-        <Button
-          label={calculating ? t("Calculating") : t("Calculate")}
-          disabled={calculating}
-          onClick={handleCalculate}
+    <LoadingOverlay
+      active={loading}
+      spinner
+      text={t("Fetching Quote...")}
+      styles={{
+        content: {
+          marginTop: "40vh",
+          marginLeft: "auto",
+          marginRight: "auto",
+        },
+      }}
+    >
+      <div className="mt-6 w-full">
+        <BasicInformation
+          inputData={inputData}
+          handleInputChange={handleInputChange}
         />
-      </div>
+        <SalesInformation
+          inputData={inputData}
+          calculatedData={quote.calculatedData ?? {}}
+          handleInputChange={handleInputChange}
+        />
 
-      <PremiumOutput raterData={quote.raterData ?? {}} />
-    </div>
+        <div className="mt-8 w-1/2 mx-auto text-center">
+          <Button
+            label={calculating ? t("Calculating") : t("Calculate")}
+            disabled={calculating}
+            onClick={handleCalculate}
+          />
+        </div>
+
+        <PremiumOutput raterData={quote.raterData ?? {}} />
+      </div>
+    </LoadingOverlay>
   );
 };
