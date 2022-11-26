@@ -21,6 +21,11 @@ export const TextInput = (props: Props) => {
     onBlur?.(value);
   };
 
+  const handleChange = (e: React.FocusEvent<HTMLInputElement>) => {
+    let value = e.target.value;
+    setInputValue(value);
+  };
+
   return (
     <div>
       {label && (
@@ -50,6 +55,7 @@ export const TextInput = (props: Props) => {
         id="exampleText0"
         value={inputValue}
         onBlur={handleBlur}
+        onChange={handleChange}
       />
     </div>
   );

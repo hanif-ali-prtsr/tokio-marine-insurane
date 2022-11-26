@@ -8,7 +8,8 @@ import { SalesInformation } from "./SalesInformation";
 import LoadingOverlay from "react-loading-overlay";
 
 const urls = new QuoteUrls(
-  "http://localhost:10000",
+  // "https://api-demo.protosure.io/",
+  "http://localhost:10000/",
   "dfd4a7c9-ff31-4d29-865c-39da71b31b3b"
 );
 
@@ -53,6 +54,7 @@ export const QuoteForm = () => {
   }, []);
 
   return (
+    // @ts-ignore
     <LoadingOverlay
       active={loading}
       spinner

@@ -22,10 +22,11 @@ const BORDER_COLORS = [
 
 interface Props {
   data: Array<{ label: string; value: number }>;
+  label?: string;
 }
 
 export const PieChart = (props: Props) => {
-  const { data } = props;
+  const { data, label="" } = props;
 
   const labels = data.map((item) => item.label);
   const values = data.map((item) => item.value);
@@ -35,7 +36,7 @@ export const PieChart = (props: Props) => {
     labels: labels,
     datasets: [
       {
-        label: "# of Votes",
+        label: label,
         data: values,
         backgroundColor: backgroundColors,
         borderColor: borderColors,

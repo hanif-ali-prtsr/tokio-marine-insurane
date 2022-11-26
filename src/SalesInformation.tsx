@@ -309,7 +309,7 @@ export const SalesInformation = (props: Props) => {
           </TableRow>
         </Table>
 
-        {inputData[fieldNames.selectLitigationCostClause] === "○" && (
+        {inputData[fieldNames.selectServiceUserSearchClause] === "○" && (
           <>
             <h3 className="my-3">
               {t("Service User Search Expense Guarantee Special Contract")}
@@ -337,7 +337,7 @@ export const SalesInformation = (props: Props) => {
           </>
         )}
 
-        {inputData[fieldNames.selectLitigationCostClause] === "○" && (
+        {inputData[fieldNames.selectInfectiousDiseaseClause] === "○" && (
           <>
             <h3 className="my-3">
               {t("Specified Infectious Diseases Coverage Special Contract")}
@@ -355,7 +355,7 @@ export const SalesInformation = (props: Props) => {
           </>
         )}
 
-        {inputData[fieldNames.selectLitigationCostClause] === "○" && (
+        {inputData[fieldNames.selectVictimMedicalExpenseClause] === "○" && (
           <>
             <h3 className="my-3">
               {t("Victim treatment cost guarantee rider")}

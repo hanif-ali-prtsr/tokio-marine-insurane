@@ -93,7 +93,7 @@ export const PremiumOutput = (props: Props) => {
         </Table>
       </div>
       <div className="flex-1 flex items-center justify-center w-1/2 p-4">
-        <PieChart data={chartsData} />
+        <PieChart data={chartsData} label={t("Cost")} />
       </div>
     </div>
   );
