@@ -56,16 +56,16 @@ export const QuoteForm = () => {
     <LoadingOverlay
       active={loading}
       spinner
-      text={t("Fetching Quote...")}
+      text={t("Fetching Quote")}
       styles={{
-        content: {
+        content: () => ({
           marginTop: "40vh",
           marginLeft: "auto",
           marginRight: "auto",
-        },
+        }),
       }}
     >
-      <div className="mt-6 w-full">
+      <div className="pt-6 w-full">
         <BasicInformation
           inputData={inputData}
           handleInputChange={handleInputChange}

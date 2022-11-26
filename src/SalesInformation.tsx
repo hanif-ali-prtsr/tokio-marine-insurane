@@ -72,7 +72,7 @@ export const SalesInformation = (props: Props) => {
         <h1 className="text-lg my-4">{t("Special Terms")}</h1>
         <SelectInput
           options={selectOptions.specialTermsClauses}
-          label={t("Lawyer's Fees, etc. Special Covenant")}
+          label={t("Lawyer's Fees, etc Special Covenant")}
           onChange={partial(
             handleInputChange,
             fieldNames.selectLawyerFeesCovenantClause
