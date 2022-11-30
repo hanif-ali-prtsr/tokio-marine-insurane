@@ -14,8 +14,8 @@ interface Props {
 export const SalesInformation = (props: Props) => {
   const { handleInputChange, inputData, calculatedData } = props;
   return (
-    <div className="flex mt-8 w-3/4 mx-auto">
-      <div className="flex-1 pr-2">
+    <div className="flex mt-8 md:w-3/4 mx-auto flex-col md:flex-row">
+      <div className="flex-1 md:pr-2">
         <h1 className="text-lg mb-4">{t("Basic Figures (Sales)")}</h1>
         <TextInput
           type="number"
@@ -61,8 +61,8 @@ export const SalesInformation = (props: Props) => {
         />
         <Table>
           <TableRow>
-            <TableCell bold>{t("Total")}</TableCell>
-            <TableCell bold>
+            <TableCell className="bg-blue bg-blue">{t("Total")}</TableCell>
+            <TableCell className="font-bold">
               {calculatedData[calculatedFieldName.totalSales]}{" "}
               {t("thousand yen")}
             </TableCell>
@@ -137,7 +137,7 @@ export const SalesInformation = (props: Props) => {
         />
       </div>
       <div className="flex-1 px-2">
-        <h1 className="text-lg mb-4">{t("Basic Contract")}</h1>
+        <h1 className="text-lg mb-4 mt-4 md:mt-0">{t("Basic Contract")}</h1>
         <h3 className="italic">
           {t(
             "Individual/property compensation (excluding home-visit nursing services)"
@@ -177,10 +177,10 @@ export const SalesInformation = (props: Props) => {
         <div className=" mt-4">
           <Table>
             <TableRow>
-              <TableCell bold>
+              <TableCell className="bg-blue">
                 {t("Payment limit (during the period)	")}
               </TableCell>
-              <TableCell bold>
+              <TableCell className="font-bold">
                 {
                   calculatedData[
                     calculatedFieldName.nusingPaymentLimitDuringPeriod
@@ -190,8 +190,10 @@ export const SalesInformation = (props: Props) => {
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell bold>{t("Deductible amount (1 accident)")}</TableCell>
-              <TableCell bold>
+              <TableCell className="bg-blue">
+                {t("Deductible amount (1 accident)")}
+              </TableCell>
+              <TableCell className="font-bold">
                 {
                   calculatedData[
                     calculatedFieldName.nursingDeductibleAmountAccident
@@ -206,46 +208,68 @@ export const SalesInformation = (props: Props) => {
         <h3 className="mt-3">{t("Property accident under management")}</h3>
         <Table>
           <TableRow>
-            <TableCell bold>{t("Payment limit (1 accident)")}</TableCell>
-            <TableCell>3,000 {t("thousand yen")}</TableCell>
+            <TableCell className="bg-blue">
+              {t("Payment limit (1 accident)")}
+            </TableCell>
+            <TableCell className="font-bold">3,000 {t("thousand yen")}</TableCell>
           </TableRow>
           <TableRow>
-            <TableCell bold>
+            <TableCell className="bg-blue">
               {t("Currency and banknote payment limit (1 accident)")}
             </TableCell>
-            <TableCell>300 {t("thousand yen")}</TableCell>
+            <TableCell className="font-bold">300 {t("thousand yen")}</TableCell>
           </TableRow>
           <TableRow>
-            <TableCell bold>{t("Deductible amount (1 accident)")}</TableCell>
-            <TableCell>{calculatedData[calculatedFieldName.managedPropertyDeductibleAmount]} {t("thousand yen")}</TableCell>
+            <TableCell className="bg-blue">
+              {t("Deductible amount (1 accident)")}
+            </TableCell>
+            <TableCell className="font-bold">
+              {
+                calculatedData[
+                  calculatedFieldName.managedPropertyDeductibleAmount
+                ]
+              }{" "}
+              {t("thousand yen")}
+            </TableCell>
           </TableRow>
         </Table>
 
         <h3 className="mt-3">{t("Human rights violation accident")}</h3>
         <Table>
           <TableRow>
-            <TableCell bold>
+            <TableCell className="bg-blue font-bold">
               {t("Payment limit (1 request/during period)")}
             </TableCell>
-            <TableCell>3,000 {t("thousand yen")}</TableCell>
+            <TableCell className="font-bold">3,000 {t("thousand yen")}</TableCell>
           </TableRow>
           <TableRow>
-            <TableCell bold>{t("Waiver amount (1 request)")}</TableCell>
-            <TableCell>{calculatedData[calculatedFieldName.managedPropertyDeductibleAmount]} {t("thousand yen")}</TableCell>
+            <TableCell className="bg-blue font-bold">
+              {t("Waiver amount (1 request)")}
+            </TableCell>
+            <TableCell className="font-bold">
+              {
+                calculatedData[
+                  calculatedFieldName.managedPropertyDeductibleAmount
+                ]
+              }{" "}
+              {t("thousand yen")}
+            </TableCell>
           </TableRow>
         </Table>
 
         <h3 className="mt-3">{t("Accident that inhibits use when missing")}</h3>
         <Table>
           <TableRow>
-            <TableCell bold>
+            <TableCell className="bg-blue font-bold">
               {t("Payment limit (for one accident/period)")}
             </TableCell>
-            <TableCell>10,000 {t("thousand yen")}</TableCell>
+            <TableCell className="font-bold">10,000 {t("thousand yen")}</TableCell>
           </TableRow>
           <TableRow>
-            <TableCell bold>{t("Deductible amount (1 accident)")}</TableCell>
-            <TableCell>0 {t("thousand yen")}</TableCell>
+            <TableCell className="bg-blue font-bold">
+              {t("Deductible amount (1 accident)")}
+            </TableCell>
+            <TableCell className="font-bold">0 {t("thousand yen")}</TableCell>
           </TableRow>
         </Table>
 
@@ -262,14 +286,16 @@ export const SalesInformation = (props: Props) => {
         <h3 className="mt-3">{t("Economic accident")}</h3>
         <Table>
           <TableRow>
-            <TableCell bold>{t("Waiver amount (1 request)")}</TableCell>
-            <TableCell>0 {t("thousand yen")}</TableCell>
+            <TableCell className="bg-blue font-bold">
+              {t("Waiver amount (1 request)")}
+            </TableCell>
+            <TableCell className="font-bold">0 {t("thousand yen")}</TableCell>
           </TableRow>
         </Table>
       </div>
 
       <div className="flex-1 pl-2">
-        <h1 className="text-lg mb-4">{t("Other Special Agreements")}</h1>
+        <h1 className="text-lg mb-4 mt-4 md:mt-0">{t("Other Special Agreements")}</h1>
 
         <h3 className="mt-3">
           {t("Lawyer's fees collateral special agreement")}
@@ -278,34 +304,38 @@ export const SalesInformation = (props: Props) => {
 
         <Table>
           <TableRow>
-            <TableCell bold>{t("Payment limit (1 person)")}</TableCell>
-            <TableCell>{t("1,000 thousand yen")}</TableCell>
+            <TableCell className="bg-blue font-bold">
+              {t("Payment limit (1 person)")}
+            </TableCell>
+            <TableCell className="font-bold">{t("1,000 thousand yen")}</TableCell>
           </TableRow>
           <TableRow>
-            <TableCell bold>
+            <TableCell className="bg-blue font-bold">
               {t("Payment limit (for one accident/period)	")}
             </TableCell>
-            <TableCell>{t("3,000 thousand yen")}</TableCell>
+            <TableCell className="font-bold">{t("3,000 thousand yen")}</TableCell>
           </TableRow>
           <TableRow>
-            <TableCell bold>{t("Deductible amount (1 accident)	")}</TableCell>
-            <TableCell>{t("0 thousand yen")}</TableCell>
+            <TableCell className="bg-blue font-bold">
+              {t("Deductible amount (1 accident)	")}
+            </TableCell>
+            <TableCell className="font-bold">{t("0 thousand yen")}</TableCell>
           </TableRow>
         </Table>
 
         <h3 className="mt-3">{t("[Economic damage]")}</h3>
         <Table>
           <TableRow>
-            <TableCell>{t("Payment limit (1 accident)")}</TableCell>
-            <TableCell>100 {t("thousand yen")}</TableCell>
+            <TableCell className="bg-blue font-bold">{t("Payment limit (1 accident)")}</TableCell>
+            <TableCell className="font-bold">100 {t("thousand yen")}</TableCell>
           </TableRow>
           <TableRow>
-            <TableCell>{t("Payment limit (during the period)")}</TableCell>
-            <TableCell>300 {t("thousand yen")}</TableCell>
+            <TableCell className="bg-blue font-bold">{t("Payment limit (during the period)")}</TableCell>
+            <TableCell className="font-bold">300 {t("thousand yen")}</TableCell>
           </TableRow>
           <TableRow>
-            <TableCell>{t("Deductible amount (1 accident)")}</TableCell>
-            <TableCell>0 {t("thousand yen")}</TableCell>
+            <TableCell className="bg-blue font-bold">{t("Deductible amount (1 accident)")}</TableCell>
+            <TableCell className="font-bold">0 {t("thousand yen")}</TableCell>
           </TableRow>
         </Table>
 
@@ -316,22 +346,22 @@ export const SalesInformation = (props: Props) => {
             </h3>
             <Table>
               <TableRow>
-                <TableCell>{t("Payment limit (1 person)")}</TableCell>
-                <TableCell>200 {t("thousand yen")}</TableCell>
+                <TableCell className="bg-blue font-bold">{t("Payment limit (1 person)")}</TableCell>
+                <TableCell className="font-bold">200 {t("thousand yen")}</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>{t("Payment limit (1 accident)")}</TableCell>
-                <TableCell>1,000 {t("thousand yen")}</TableCell>
+                <TableCell className="bg-blue font-bold">{t("Payment limit (1 accident)")}</TableCell>
+                <TableCell className="font-bold">1,000 {t("thousand yen")}</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>
+                <TableCell className="bg-blue font-bold">
                   {t("Reward payment limit (1 person/1 company)")}
                 </TableCell>
-                <TableCell>5 {t("thousand yen")}</TableCell>
+                <TableCell className="font-bold">5 {t("thousand yen")}</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>{t("Deductible amount (1 accident)")}</TableCell>
-                <TableCell>0 {t("thousand yen")}</TableCell>
+                <TableCell className="bg-blue font-bold">{t("Deductible amount (1 accident)")}</TableCell>
+                <TableCell className="font-bold">0 {t("thousand yen")}</TableCell>
               </TableRow>
             </Table>
           </>
@@ -344,12 +374,12 @@ export const SalesInformation = (props: Props) => {
             </h3>
             <Table>
               <TableRow>
-                <TableCell>{t("Payment limit (1 accident)")}</TableCell>
-                <TableCell>1,000 {t("thousand yen")}</TableCell>
+                <TableCell className="bg-blue font-bold">{t("Payment limit (1 accident)")}</TableCell>
+                <TableCell className="font-bold">1,000 {t("thousand yen")}</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>{t("Deductible amount (1 accident)")}</TableCell>
-                <TableCell>0 {t("thousand yen")}</TableCell>
+                <TableCell className="bg-blue font-bold">{t("Deductible amount (1 accident)")}</TableCell>
+                <TableCell className="font-bold">0 {t("thousand yen")}</TableCell>
               </TableRow>
             </Table>
           </>
@@ -362,18 +392,18 @@ export const SalesInformation = (props: Props) => {
             </h3>
             <Table>
               <TableRow>
-                <TableCell>{t("Payment limit (1 person)")}</TableCell>
-                <TableCell>500 {t("thousand yen")}</TableCell>
+                <TableCell className="bg-blue font-bold">{t("Payment limit (1 person)")}</TableCell>
+                <TableCell className="font-bold">500 {t("thousand yen")}</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>
+                <TableCell className="bg-blue font-bold">
                   {t("Payment limit (for one accident/period)")}
                 </TableCell>
-                <TableCell>10,000 {t("thousand yen")}</TableCell>
+                <TableCell className="font-bold">10,000 {t("thousand yen")}</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>{t("Deductible amount (1 accident)")}</TableCell>
-                <TableCell>0 {t("thousand yen")}</TableCell>
+                <TableCell className="bg-blue font-bold">{t("Deductible amount (1 accident)")}</TableCell>
+                <TableCell className="font-bold">0 {t("thousand yen")}</TableCell>
               </TableRow>
             </Table>
           </>
@@ -384,14 +414,14 @@ export const SalesInformation = (props: Props) => {
             <h3 className="my-3">{t("Litigation cost guarantee clause")}</h3>
             <Table>
               <TableRow>
-                <TableCell>{t("Payment limit (1 accident/1 claim)")}</TableCell>
-                <TableCell>10,000 {t("thousand yen")}</TableCell>
+                <TableCell className="bg-blue font-bold">{t("Payment limit (1 accident/1 claim)")}</TableCell>
+                <TableCell className="font-bold">10,000 {t("thousand yen")}</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>
+                <TableCell className="bg-blue font-bold">
                   {t("Deductible amount (1 accident/1 claim)")}
                 </TableCell>
-                <TableCell>0 {t("thousand yen")}</TableCell>
+                <TableCell className="font-bold">0 {t("thousand yen")}</TableCell>
               </TableRow>
             </Table>
           </>
@@ -404,20 +434,20 @@ export const SalesInformation = (props: Props) => {
             </h3>
             <Table>
               <TableRow>
-                <TableCell>{t("Payment limit (1 accident/1 claim)")}</TableCell>
-                <TableCell>10,000 {t("thousand yen")}</TableCell>
+                <TableCell className="bg-blue font-bold">{t("Payment limit (1 accident/1 claim)")}</TableCell>
+                <TableCell className="font-bold">10,000 {t("thousand yen")}</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>
+                <TableCell className="bg-blue font-bold">
                   {t("Physical disability visit fee (1 person)")}
                 </TableCell>
-                <TableCell>100 {t("thousand yen")}</TableCell>
+                <TableCell className="font-bold">100 {t("thousand yen")}</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>
+                <TableCell className="bg-blue font-bold">
                   {t("Deductible amount (1 accident/1 claim)")}
                 </TableCell>
-                <TableCell>0 {t("thousand yen")}</TableCell>
+                <TableCell className="font-bold">0 {t("thousand yen")}</TableCell>
               </TableRow>
             </Table>
           </>

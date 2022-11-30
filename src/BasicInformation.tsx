@@ -1,9 +1,15 @@
 import { partial } from "lodash";
+import { useMemo } from "react";
 import { DateInput } from "./components/DateInput";
 import { SelectInput } from "./components/SelectInput";
 import { TextInput } from "./components/TextInput";
 import { t } from "./i18nConfig";
-import { fieldNames, selectOptions } from "./utils";
+import {
+  fieldNames,
+  selectOptions,
+  shouldDisplayNumberOfPaymentsField,
+  shouldDisplayPaymentMethod2Field,
+} from "./utils";
 
 interface Props {
   inputData: Record<any, any>;
@@ -13,12 +19,24 @@ interface Props {
 export const BasicInformation = (props: Props) => {
   const { inputData, handleInputChange } = props;
 
+  // const insurancePeriod = useMemo(() => {
+  //   const insurancePeriodStart = inputData[fieldNames.insurancePeriodStart];
+  //   const insurancePeriodEnd = inputData[fieldNames.insurancePeriodEnd];
+
+  //   if (!insurancePeriodStart || !insurancePeriodEnd) {
+  //     return null;
+  //   }
+  // }, [
+  //   inputData?.[fieldNames.insurancePeriodStart],
+  //   inputData?.[fieldNames.insurancePeriodEnd],
+  // ]);
+
   return (
-    <div className="w-1/2 mx-auto">
+    <div className="md:w-1/2 mx-auto">
       <h1 className="text-2xl">{t("Basic Information")}</h1>
-      <div className="flex mt-6">
+      <div className="flex mt-6 md:flex-row flex-col">
         <div className="flex-1 flex items-center">{t("Insurance Period")}</div>
-        <div className="px-2">
+        <div className="md:px-2">
           <DateInput
             value={inputData[fieldNames.insurancePeriodStart]}
             onChange={partial(
@@ -28,7 +46,7 @@ export const BasicInformation = (props: Props) => {
           />
         </div>
         <p className="flex items-center">{t("to")}</p>
-        <div className="px-2">
+        <div className="md:px-2">
           <DateInput
             value={inputData[fieldNames.insurancePeriodEnd]}
             onChange={partial(handleInputChange, fieldNames.insurancePeriodEnd)}
@@ -36,8 +54,8 @@ export const BasicInformation = (props: Props) => {
         </div>
       </div>
 
-      <div className="flex mt-6">
-        <div className="pr-2 flex-1">
+      <div className="flex mt-6 md:flex-row flex-col">
+        <div className="md:pr-2 flex-1">
           <SelectInput
             options={selectOptions.detailedActuarialDistinction}
             label={t("Detailed and Actuarian Distinction")}
@@ -48,7 +66,7 @@ export const BasicInformation = (props: Props) => {
             value={inputData[fieldNames.detailedActuarialDistinction]}
           />
         </div>
-        <div className="box pl-2 flex items-center justify-center flex-1">
+        <div className="box flex items-center justify-center flex-1 pt-2 md:pt-0">
           <SelectInput
             options={selectOptions.paymentMethod}
             label={t("Payment Method")}
@@ -56,6 +74,32 @@ export const BasicInformation = (props: Props) => {
             value={inputData[fieldNames.paymentMethod]}
           />
         </div>
+      </div>
+
+      <div className="flex mt-6 md:flex-row flex-col">
+        {shouldDisplayNumberOfPaymentsField(inputData) && (
+          <div className="md:pr-2 flex-1">
+            <SelectInput
+              options={selectOptions.numberOfPayments}
+              label={t("Number of Payments")}
+              onChange={partial(
+                handleInputChange,
+                fieldNames.numberOfPayments
+              )}
+              value={inputData[fieldNames.numberOfPayments]}
+            />
+          </div>
+        )}
+        {shouldDisplayPaymentMethod2Field(inputData) && (
+          <div className="box flex items-center justify-center flex-1 pt-2 md:pt-0">
+            <SelectInput
+              options={selectOptions.paymentMethod2}
+              label={t("Payment Method 2")}
+              onChange={partial(handleInputChange, fieldNames.paymentMethod2)}
+              value={inputData[fieldNames.paymentMethod2]}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

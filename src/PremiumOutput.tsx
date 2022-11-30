@@ -14,85 +14,93 @@ export const PremiumOutput = (props: Props) => {
   const chartsData = useMemo(() => getChartsData(raterData), [raterData]);
 
   return (
-    <div className="w-3/4 m-auto flex mt-8">
-      <div className="mt-4 flex-1 w-1/2">
+    <div className="md:w-3/4 m-auto flex mt-8 flex-col md:flex-row">
+      <div className="mt-4 flex-1 md:w-1/2">
         <Table>
           <TableRow>
-            <TableCell bold>{t("Basic contract premium *2	")}</TableCell>
-            <TableCell>
+            <TableCell className="bg-pink font-bold">
+              {t("Basic contract premium *2	")}
+            </TableCell>
+            <TableCell className="font-bold">
               {raterData[raterFieldNames.baseContractPremium]} {t("Yen")}
             </TableCell>
           </TableRow>
           <TableRow>
-            <TableCell bold>
+            <TableCell className="bg-pink font-bold">
               {t(
                 "Lawyer's fees collateral special clause (for business) insurance premium	"
               )}
             </TableCell>
-            <TableCell>
+            <TableCell className="font-bold">
               {raterData[raterFieldNames.lawyerFeesCollateral]} {t("Yen")}
             </TableCell>
           </TableRow>
           <TableRow>
-            <TableCell bold>
+            <TableCell className="bg-pink font-bold">
               {t(
                 "Service User Search Expense Guarantee Covenant Insurance Premium	"
               )}
             </TableCell>
-            <TableCell>
+            <TableCell className="font-bold">
               {raterData[raterFieldNames.serviceUserSearchPremium]} {t("Yen")}
             </TableCell>
           </TableRow>
           <TableRow>
-            <TableCell bold>
+            <TableCell className="bg-pink font-bold">
               {t(
                 "Specified Infectious Disease Coverage Covenant Insurance premium	"
               )}
             </TableCell>
-            <TableCell>
+            <TableCell className="font-bold">
               {raterData[raterFieldNames.infectiousDiseasePremium]} {t("Yen")}
             </TableCell>
           </TableRow>
           <TableRow>
-            <TableCell bold>
+            <TableCell className="bg-pink font-bold">
               {t(
                 "Victim medical expenses collateral covenant Insurance premium	"
               )}
             </TableCell>
-            <TableCell>
+            <TableCell className="font-bold">
               {raterData[raterFieldNames.victimMedicalExpensesPremium]}{" "}
               {t("Yen")}
             </TableCell>
           </TableRow>
           <TableRow>
-            <TableCell bold>
+            <TableCell className="bg-pink font-bold">
               {t("Litigation cost guarantee covenant insurance premium	")}
             </TableCell>
-            <TableCell>
+            <TableCell className="font-bold">
               {raterData[raterFieldNames.litigationCostPremium]} {t("Yen")}
             </TableCell>
           </TableRow>
           <TableRow>
-            <TableCell bold>{t("1 time premium	")}</TableCell>
-            <TableCell>
+            <TableCell className="bg-pink font-bold">
+              {t("1 time premium	")}
+            </TableCell>
+            <TableCell className="font-bold">
               {raterData[raterFieldNames.oneTimePremium]} {t("Yen")}
             </TableCell>
           </TableRow>
           <TableRow>
-            <TableCell bold>{t("Total premium paid	")}</TableCell>
-            <TableCell>
+            <TableCell className="bg-pink font-bold">
+              {t("Total premium paid	")}
+            </TableCell>
+            <TableCell className="font-bold">
               {raterData[raterFieldNames.totalPremiumPaid]} {t("Yen")}
             </TableCell>
           </TableRow>
           <TableRow>
-            <TableCell bold>{t("Minimum premium paid	")}</TableCell>
-            <TableCell>
+            <TableCell className="bg-pink font-bold">
+              {t("Minimum premium paid	")}
+            </TableCell>
+            <TableCell className="font-bold">
               {raterData[raterFieldNames.minmumPremiumPaid]} {t("Yen")}
             </TableCell>
           </TableRow>
         </Table>
       </div>
-      <div className="flex-1 flex items-center justify-center w-1/2 p-4">
+      <div className="flex-1 flex items-center justify-center md:w-1/2 md:p-4">
         <PieChart data={chartsData} label={t("Cost")} />
       </div>
     </div>
@@ -128,25 +136,6 @@ const getChartsData = (raterData: Props["raterData"]) => {
     raterData,
     raterFieldNames.litigationCostPremium
   );
-  const oneTimePremium = getPremiumField(
-    raterData,
-    raterFieldNames.oneTimePremium
-  );
-  const totalPremium = getPremiumField(
-    raterData,
-    raterFieldNames.totalPremiumPaid
-  );
-
-  const sumPremium =
-    lawyerFeesCollateral +
-    serviceUserSearchPremium +
-    infectiousDiseasePremium +
-    victimMedicalExpensesPremium +
-    litigationCostPremium +
-    oneTimePremium;
-
-  const otherPremium =
-    totalPremium > sumPremium ? totalPremium - sumPremium : 0;
 
   return [
     { label: t("Basic contract premium *2	"), value: 10 },
@@ -175,14 +164,6 @@ const getChartsData = (raterData: Props["raterData"]) => {
     {
       label: t("Litigation cost guarantee covenant insurance premium	"),
       value: litigationCostPremium,
-    },
-    {
-      label: t("1 time premium	"),
-      value: oneTimePremium,
-    },
-    {
-      label: t("Others"),
-      value: otherPremium,
-    },
+    }
   ];
 };

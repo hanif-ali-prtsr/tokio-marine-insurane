@@ -6,10 +6,11 @@ import { t } from "./i18nConfig";
 import { PremiumOutput } from "./PremiumOutput";
 import { SalesInformation } from "./SalesInformation";
 import LoadingOverlay from "react-loading-overlay";
+import { QuoteErrors } from "./QuoteErrors";
 
 const urls = new QuoteUrls(
-  "https://api-demo.protosure.io/",
-  // "http://localhost:10000/",
+  // "https://api-demo.protosure.io/",
+  "http://localhost:10000/",
   "dfd4a7c9-ff31-4d29-865c-39da71b31b3b"
 );
 
@@ -18,9 +19,9 @@ export const QuoteForm = () => {
   const [loading, setLoading] = useState(true);
   const [calculating, setCalculating] = useState(false);
   const [inputData, setInputData] = useState<Record<any, any>>({});
+  const [errors, setErrors] = useState<string[]>([]);
 
   const handleInputChange = async (fieldName: string, value: any) => {
-    console.log({ fieldName, value });
     const newInputData = { ...inputData, [fieldName]: value };
     setInputData(newInputData);
     const newQuote = await (
@@ -53,6 +54,16 @@ export const QuoteForm = () => {
     getQuote();
   }, []);
 
+  useEffect(() => {
+    setErrors(
+      [
+        quote.raterData?.output_error1,
+        quote.raterData?.output_error2,
+        quote.raterData?.output_error3,
+      ].filter((val) => Boolean(val))
+    );
+  }, [quote]);
+
   return (
     // @ts-ignore
     <LoadingOverlay
@@ -67,7 +78,7 @@ export const QuoteForm = () => {
         }),
       }}
     >
-      <div className="pt-6 w-full">
+      <div className="p-6 w-full">
         <BasicInformation
           inputData={inputData}
           handleInputChange={handleInputChange}
@@ -85,7 +96,7 @@ export const QuoteForm = () => {
             onClick={handleCalculate}
           />
         </div>
-
+        {errors.length > 0 && <QuoteErrors errors={errors} />}
         <PremiumOutput raterData={quote.raterData ?? {}} />
       </div>
     </LoadingOverlay>

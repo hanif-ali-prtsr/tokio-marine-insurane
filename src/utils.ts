@@ -130,7 +130,31 @@ export const selectOptions = {
   specialTermsClauses: [{ label: "○", value: "○" }],
 
   accidentsPaymentLimit: [
-    {label: "10,000", value: 10000},
-    {label: "100,000", value: 100000},
-  ]
+    { label: "10,000", value: 10000 },
+    { label: "100,000", value: 100000 },
+  ],
+};
+
+export const shouldDisplayNumberOfPaymentsField = (
+  inputData: Record<string, any>
+) => {
+  console.log(inputData[fieldNames.paymentMethod]);
+  return [
+    "直接集金・均等払・2か月毎",
+    "直接集金・均等払・3か月毎",
+    "直接集金・均等払・4か月毎",
+    "直接集金・均等払・6か月毎",
+    "口座振替・月払",
+  ].includes(inputData[fieldNames.paymentMethod]);
+};
+
+export const shouldDisplayPaymentMethod2Field = (
+  inputData: Record<string, any>
+) => {
+  const paymentMethodValues = [
+    "口座振替・一時払",
+    "請求書・一時払",
+    "直接集金・一時払",
+  ];
+  return !paymentMethodValues.includes(inputData[fieldNames.paymentMethod]);
 };

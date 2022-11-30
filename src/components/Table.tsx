@@ -20,11 +20,13 @@ export const TableRow = (props: PropsWithChildren) => {
   return <tr className="bg-white border-b">{props.children}</tr>;
 };
 
-export const TableCell = (props: PropsWithChildren & { bold?: boolean }) => {
-  const { bold = false } = props;
-  const className = `px-6 py-2 text-sm ext-gray-900 ${
-    bold ? "font-medium" : ""
-  }`;
-
-  return <td className={className}>{props.children}</td>;
+export const TableCell = (
+  props: PropsWithChildren & { className?: string }
+) => {
+  const { className = "" } = props;
+  return (
+    <td className={`px-6 py-2 text-sm ext-gray-900 ${className}`}>
+      {props.children}
+    </td>
+  );
 };
