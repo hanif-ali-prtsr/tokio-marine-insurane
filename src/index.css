@@ -2,12 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
+body {
   font-size: 0.9rem;
 }
 
-*{
-	box-sizing: border-box;
+* {
+  box-sizing: border-box;
 }
 
 input {
@@ -20,19 +20,19 @@ input {
   padding-right: 16px;
 }
 
-.grid > div{
-	border: 1px solid black;
-	padding: 4px;
+.grid > div {
+  border: 1px solid black;
+  padding: 4px;
 }
 
-.bg-blue{
+.bg-blue {
   background: #b2ffff;
 }
 
-.bg-pink{
+.bg-pink {
   background: pink;
 }
- 
-td:last-child{
+
+td:last-child {
   width: 40%;
 }

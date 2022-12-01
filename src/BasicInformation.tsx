@@ -1,5 +1,4 @@
 import { partial } from "lodash";
-import { useMemo } from "react";
 import { DateInput } from "./components/DateInput";
 import { SelectInput } from "./components/SelectInput";
 import { TextInput } from "./components/TextInput";
@@ -92,7 +91,9 @@ export const BasicInformation = (props: Props) => {
               />
             </div>
             <div className="box flex items-end flex-1 pt-2 md:pt-0">
-              <p className="text-sm md:ml-2">{t("Please between 50 and 100")}</p>
+              <p className="text-sm md:ml-2">
+                {t("Please between 50 and 100")}
+              </p>
             </div>
           </>
         )}

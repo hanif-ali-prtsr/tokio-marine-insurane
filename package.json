@@ -8,11 +8,16 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "i18n-extract": "i18next --silent --output 'src/locales/ja/translations.json' 'src/**/*.{js,jsx,ts,tsx}'",
-    "proxy": "env $(cat .env) nodemon src/proxy.js"
+    "proxy": "env $(cat .env) nodemon src/proxy.js",
+    "format": "prettier . --write",
+    "format-test": "pretter . --test",
+    "lint": "eslint --ext .ts,.tsx --ignore-path .gitignore --fix src"
   },
   "dependencies": {
     "@types/lodash": "^4.14.190",
     "chart.js": "^4.0.1",
+    "eslint": "^8.28.0",
+    "eslint-plugin-react": "^7.31.11",
     "http-proxy": "^1.18.1",
     "i18next": "^22.0.6",
     "i18next-parser": "^7.0.3",
@@ -30,9 +35,14 @@
     "@types/react-datepicker": "^4.8.0",
     "@types/react-dom": "^18.0.8",
     "@types/react-loading-overlay": "^1.0.1",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
     "@vitejs/plugin-react": "^2.2.0",
     "autoprefixer": "^10.4.13",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
     "postcss": "^8.4.19",
+    "prettier": "^2.8.0",
     "tailwindcss": "^3.2.4",
     "typescript": "^4.6.4",
     "vite": "^3.2.3"

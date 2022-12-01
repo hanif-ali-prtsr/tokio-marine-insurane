@@ -26,7 +26,7 @@ interface Props {
 }
 
 export const PieChart = (props: Props) => {
-  const { data, label="" } = props;
+  const { data, label = "" } = props;
 
   const labels = data.map((item) => item.label);
   const values = data.map((item) => item.value);

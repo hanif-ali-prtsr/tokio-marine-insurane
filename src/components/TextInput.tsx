@@ -16,13 +16,13 @@ export const TextInput = (props: Props) => {
   }, [value]);
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    let value = e.target.value;
+    const value = e.target.value;
     setInputValue(value);
     onBlur?.(value);
   };
 
   const handleChange = (e: React.FocusEvent<HTMLInputElement>) => {
-    let value = e.target.value;
+    const value = e.target.value;
     setInputValue(value);
   };
 

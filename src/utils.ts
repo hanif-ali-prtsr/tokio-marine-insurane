@@ -159,9 +159,8 @@ export const shouldDisplayPaymentMethod2Field = (
   return !paymentMethodValues.includes(inputData[fieldNames.paymentMethod]);
 };
 
-
 export const shouldDisplayProvisionalPremiumRateField = (
   inputData: Record<string, any>
 ) => {
   return inputData[fieldNames.detailedActuarialDistinction] === "精算要";
-}
+};

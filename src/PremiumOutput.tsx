@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { PieChart } from "./components/PieChart";
 import { Table, TableCell, TableRow } from "./components/Table";
 import { t } from "./i18nConfig";
-import { fieldNames, raterFieldNames } from "./utils";
+import { raterFieldNames } from "./utils";
 
 interface Props {
   raterData: Record<any, any>;

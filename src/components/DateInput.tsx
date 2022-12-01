@@ -19,12 +19,12 @@ export const DateInput = (props: Props) => {
     }
   }, [value]);
 
-  const handleChange = (date: Date, e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (date: Date) => {
     setDateValue(date);
 
-    const formattedValue = `${date.getMonth() + 1}/${
-      date.getDate()
-    }/${date.getFullYear()}`;
+    const formattedValue = `${
+      date.getMonth() + 1
+    }/${date.getDate()}/${date.getFullYear()}`;
     onChange?.(formattedValue);
   };
 
