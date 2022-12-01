@@ -2,8 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: Hiragino;
+  src: url("../assets/hiragino-kaku-gothic-pro-w3.otf") format("opentype");
+}
+
 body {
   font-size: 0.9rem;
+  font-family: Hiragino
 }
 
 * {
@@ -35,4 +41,19 @@ input {
 
 td:last-child {
   width: 40%;
+}
+
+.main-header{
+  font-size: 1.3rem;
+}
+.main-header:before{
+  content: "[ "
+}
+.main-header:after{
+  content: " ]"
+}
+
+.sub-header{
+  font-size: 1.1.rem;
+  font-weight: bold;
 }

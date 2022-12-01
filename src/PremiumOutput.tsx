@@ -12,6 +12,11 @@ export const PremiumOutput = (props: Props) => {
   const { raterData } = props;
 
   const chartsData = useMemo(() => getChartsData(raterData), [raterData]);
+  const chartHasData = useMemo(
+    () =>
+      chartsData.map((premiumData) => premiumData.value).some((value) => value),
+    [chartsData]
+  );
 
   return (
     <div className="md:w-3/4 m-auto flex mt-8 flex-col md:flex-row">
@@ -100,8 +105,14 @@ export const PremiumOutput = (props: Props) => {
           </TableRow>
         </Table>
       </div>
-      <div className="flex-1 flex items-center justify-center md:w-1/2 md:p-4">
-        <PieChart data={chartsData} label={t("Cost")} />
+      <div className="flex-1 flex items-center justify-center mt-8 md:w-1/2 md:p-4 md:mt-0">
+        {chartHasData ? (
+          <PieChart data={chartsData} label={t("Cost")} />
+        ) : (
+          <p className="p-8 text-center text-pink-700">
+            {t("Please calculate the premium to show chart")}
+          </p>
+        )}
       </div>
     </div>
   );

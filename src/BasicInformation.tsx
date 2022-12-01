@@ -33,7 +33,7 @@ export const BasicInformation = (props: Props) => {
 
   return (
     <div className="md:w-1/2 mx-auto">
-      <h1 className="text-2xl">{t("Basic Information")}</h1>
+      <h1 className="text-2xl main-header">{t("Basic Information")}</h1>
       <div className="flex mt-6 md:flex-row flex-col">
         <div className="flex items-center mr-5">{t("Insurance Period")}</div>
         <div className="md:px-2">
