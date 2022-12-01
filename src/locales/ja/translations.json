@@ -4,6 +4,8 @@
   "to": "～",
   "Detailed and Actuarian Distinction": "明細精算区分",
   "Payment Method": "払込方法*",
+  "Provisional Premium Rate": "暫定保険料割合（％）",
+  "Please between 50 and 100": "※50～100で設定して下さい。",
   "Number of Payments": "払込回数",
   "Payment Method 2": "払込方法 割増有無",
   "Select an option": "オプションを選択する",

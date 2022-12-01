@@ -116,6 +116,10 @@ const getPremiumField = (raterData: Record<any, any>, fieldName: string) => {
 };
 
 const getChartsData = (raterData: Props["raterData"]) => {
+  const basicContractPremium = getPremiumField(
+    raterData,
+    raterFieldNames.baseContractPremium
+  );
   const lawyerFeesCollateral = getPremiumField(
     raterData,
     raterFieldNames.lawyerFeesCollateral
@@ -138,7 +142,7 @@ const getChartsData = (raterData: Props["raterData"]) => {
   );
 
   return [
-    { label: t("Basic contract premium *2	"), value: 10 },
+    { label: t("Basic contract premium *2	"), value: basicContractPremium },
     {
       label: t(
         "Lawyer's fees collateral special clause (for business) insurance premium	"
@@ -164,6 +168,6 @@ const getChartsData = (raterData: Props["raterData"]) => {
     {
       label: t("Litigation cost guarantee covenant insurance premium	"),
       value: litigationCostPremium,
-    }
+    },
   ];
 };

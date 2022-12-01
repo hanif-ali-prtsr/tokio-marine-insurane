@@ -9,6 +9,7 @@ import {
   selectOptions,
   shouldDisplayNumberOfPaymentsField,
   shouldDisplayPaymentMethod2Field,
+  shouldDisplayProvisionalPremiumRateField,
 } from "./utils";
 
 interface Props {
@@ -35,7 +36,7 @@ export const BasicInformation = (props: Props) => {
     <div className="md:w-1/2 mx-auto">
       <h1 className="text-2xl">{t("Basic Information")}</h1>
       <div className="flex mt-6 md:flex-row flex-col">
-        <div className="flex-1 flex items-center">{t("Insurance Period")}</div>
+        <div className="flex items-center mr-5">{t("Insurance Period")}</div>
         <div className="md:px-2">
           <DateInput
             value={inputData[fieldNames.insurancePeriodStart]}
@@ -76,16 +77,34 @@ export const BasicInformation = (props: Props) => {
         </div>
       </div>
 
+      <div className="flex md:flex-row flex-col">
+        {shouldDisplayProvisionalPremiumRateField(inputData) && (
+          <>
+            <div className="md:pr-2 mt-6 flex-1">
+              <TextInput
+                type="text"
+                label={t("Provisional Premium Rate")}
+                onBlur={partial(
+                  handleInputChange,
+                  fieldNames.provisionalPremiumRate
+                )}
+                value={inputData[fieldNames.provisionalPremiumRate]}
+              />
+            </div>
+            <div className="box flex items-end flex-1 pt-2 md:pt-0">
+              <p className="text-sm md:ml-2">{t("Please between 50 and 100")}</p>
+            </div>
+          </>
+        )}
+      </div>
+
       <div className="flex mt-6 md:flex-row flex-col">
         {shouldDisplayNumberOfPaymentsField(inputData) && (
           <div className="md:pr-2 flex-1">
             <SelectInput
               options={selectOptions.numberOfPayments}
               label={t("Number of Payments")}
-              onChange={partial(
-                handleInputChange,
-                fieldNames.numberOfPayments
-              )}
+              onChange={partial(handleInputChange, fieldNames.numberOfPayments)}
               value={inputData[fieldNames.numberOfPayments]}
             />
           </div>

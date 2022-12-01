@@ -6,6 +6,7 @@ export const fieldNames = {
   paymentMethod: "TYPE_WSELECTIPUT_52c3279e92d841a5a1fd09a832a400d9",
   numberOfPayments: "TYPE_WSELECTIPUT_4822d8b5c0864277a4804c7626622554",
   paymentMethod2: "TYPE_WSELECTIPUT_2acebd980de444b09c40d11905def955",
+  provisionalPremiumRate: "TYPE_WTEXTINPUT_f539423c50b044259e4d09d4034f3b48",
 
   // Basic Figures
   salesFacilityOperations: "TYPE_WTEXTINPUT_82efab32847447709b0588a28edd66f4",
@@ -138,7 +139,6 @@ export const selectOptions = {
 export const shouldDisplayNumberOfPaymentsField = (
   inputData: Record<string, any>
 ) => {
-  console.log(inputData[fieldNames.paymentMethod]);
   return [
     "直接集金・均等払・2か月毎",
     "直接集金・均等払・3か月毎",
@@ -158,3 +158,10 @@ export const shouldDisplayPaymentMethod2Field = (
   ];
   return !paymentMethodValues.includes(inputData[fieldNames.paymentMethod]);
 };
+
+
+export const shouldDisplayProvisionalPremiumRateField = (
+  inputData: Record<string, any>
+) => {
+  return inputData[fieldNames.detailedActuarialDistinction] === "精算要";
+}
