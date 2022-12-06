@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import { Layout } from "./Layout";
 import "./i18nConfig";
+import { QuoteForm } from "./QuoteForm";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <Layout />
+    <QuoteForm />
   </React.StrictMode>
 );

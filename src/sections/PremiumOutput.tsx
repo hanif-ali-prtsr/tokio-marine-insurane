@@ -1,8 +1,8 @@
 import { useMemo } from "react";
-import { PieChart } from "./components/PieChart";
-import { Table, TableCell, TableRow } from "./components/Table";
-import { t } from "./i18nConfig";
-import { raterFieldNames } from "./utils";
+import { PieChart } from "../components/PieChart";
+import { Table, TableCell, TableRow } from "../components/Table";
+import { t } from "../i18nConfig";
+import { raterFieldNames } from "../utils";
 
 interface Props {
   raterData: Record<any, any>;
@@ -19,7 +19,7 @@ export const PremiumOutput = (props: Props) => {
   );
 
   return (
-    <div className="md:w-3/4 m-auto flex mt-8 flex-col md:flex-row">
+    <div className="md:w-3/4 m-auto flex mt-2 flex-col md:flex-row">
       <div className="mt-4 flex-1 md:w-1/2">
         <Table>
           <TableRow>
@@ -105,7 +105,7 @@ export const PremiumOutput = (props: Props) => {
           </TableRow>
         </Table>
       </div>
-      <div className="flex-1 flex items-center justify-center mt-8 md:w-1/2 md:p-4 md:mt-0">
+      <div className="flex-1 flex items-center justify-center mt-8 max-h-[370px] md:w-1/2 md:p-4 md:mt-0">
         {chartHasData ? (
           <PieChart data={chartsData} label={t("Cost")} />
         ) : (

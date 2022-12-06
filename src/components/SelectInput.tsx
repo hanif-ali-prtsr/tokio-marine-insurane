@@ -1,13 +1,15 @@
 import { t } from "../i18nConfig";
+import { ValidationErrors } from "./ValidationErrors";
 
 interface Props {
   label?: string;
   options: Array<{ value: string | number; label: string }>;
   onChange?: (value: string | number) => void;
   value?: any;
+  errors?: string[];
 }
 export const SelectInput = (props: Props) => {
-  const { label, options, onChange, value } = props;
+  const { label, options, onChange, value, errors } = props;
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     onChange?.(e.target.value);
@@ -22,6 +24,7 @@ export const SelectInput = (props: Props) => {
       )}
       <select
         className="
+          h-[36px]
 					form-control
 					block
 					w-full
@@ -51,6 +54,7 @@ export const SelectInput = (props: Props) => {
           </option>
         ))}
       </select>
+      <ValidationErrors errors={errors} />
     </div>
   );
 };

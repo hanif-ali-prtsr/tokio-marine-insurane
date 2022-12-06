@@ -1,18 +1,19 @@
 import { partial } from "lodash";
-import { SelectInput } from "./components/SelectInput";
-import { Table, TableCell, TableRow } from "./components/Table";
-import { TextInput } from "./components/TextInput";
-import { t } from "./i18nConfig";
-import { calculatedFieldName, fieldNames, selectOptions } from "./utils";
+import { SelectInput } from "../components/SelectInput";
+import { Table, TableCell, TableRow } from "../components/Table";
+import { TextInput } from "../components/TextInput";
+import { t } from "../i18nConfig";
+import { calculatedFieldName, fieldNames, selectOptions } from "../utils";
 
 interface Props {
   handleInputChange: (fieldName: string, value: any) => void;
   inputData: Record<any, any>;
   calculatedData: Record<any, any>;
+  errors: Record<any, any>;
 }
 
 export const SalesInformation = (props: Props) => {
-  const { handleInputChange, inputData, calculatedData } = props;
+  const { handleInputChange, inputData, calculatedData, errors } = props;
   return (
     <div className="flex mt-8 md:w-3/4 mx-auto flex-col md:flex-row">
       <div className="flex-1 md:pr-2">
@@ -25,24 +26,28 @@ export const SalesInformation = (props: Props) => {
             fieldNames.salesFacilityOperations
           )}
           value={inputData[fieldNames.salesFacilityOperations]}
+          errors={errors[fieldNames.salesFacilityOperations]}
         />
         <TextInput
           type="number"
           label={t("Sales Home-visit care and other services")}
           onBlur={partial(handleInputChange, fieldNames.salesHomeVisit)}
           value={inputData[fieldNames.salesHomeVisit]}
+          errors={errors[fieldNames.salesHomeVisit]}
         />
         <TextInput
           type="number"
           label={t("Sales Home-visit nursing services (thousand yen)")}
           onBlur={partial(handleInputChange, fieldNames.salesHomeVisitNursing)}
           value={inputData[fieldNames.salesHomeVisitNursing]}
+          errors={errors[fieldNames.salesHomeVisitNursing]}
         />
         <TextInput
           type="number"
           label={t("Sales In-home care support services (1,000 yen)")}
           onBlur={partial(handleInputChange, fieldNames.salesInHomeCare)}
           value={inputData[fieldNames.salesInHomeCare]}
+          errors={errors[fieldNames.salesInHomeCare]}
         />
         <TextInput
           type="number"
@@ -52,12 +57,14 @@ export const SalesInformation = (props: Props) => {
             fieldNames.netSaleWelfareEquipment
           )}
           value={inputData[fieldNames.netSaleWelfareEquipment]}
+          errors={errors[fieldNames.netSaleWelfareEquipment]}
         />
         <TextInput
           type="number"
           label={t("Net sales Home renovation (1,000 yen)")}
           onBlur={partial(handleInputChange, fieldNames.netSaleHomeRenovation)}
           value={inputData[fieldNames.netSaleHomeRenovation]}
+          errors={errors[fieldNames.netSaleHomeRenovation]}
         />
         <Table>
           <TableRow>
@@ -78,6 +85,7 @@ export const SalesInformation = (props: Props) => {
             fieldNames.selectLawyerFeesCovenantClause
           )}
           value={inputData[fieldNames.selectLawyerFeesCovenantClause]}
+          errors={errors[fieldNames.selectLawyerFeesCovenantClause]}
         />
         <SelectInput
           options={selectOptions.specialTermsClauses}
@@ -87,6 +95,7 @@ export const SalesInformation = (props: Props) => {
             fieldNames.selectServiceUserSearchClause
           )}
           value={inputData[fieldNames.selectServiceUserSearchClause]}
+          errors={errors[fieldNames.selectServiceUserSearchClause]}
         />
         <SelectInput
           options={selectOptions.specialTermsClauses}
@@ -98,6 +107,7 @@ export const SalesInformation = (props: Props) => {
             fieldNames.selectInfectiousDiseaseClause
           )}
           value={inputData[fieldNames.selectInfectiousDiseaseClause]}
+          errors={errors[fieldNames.selectInfectiousDiseaseClause]}
         />
         <SelectInput
           options={selectOptions.specialTermsClauses}
@@ -107,6 +117,7 @@ export const SalesInformation = (props: Props) => {
             fieldNames.selectVictimMedicalExpenseClause
           )}
           value={inputData[fieldNames.selectVictimMedicalExpenseClause]}
+          errors={errors[fieldNames.selectVictimMedicalExpenseClause]}
         />
         <SelectInput
           options={selectOptions.specialTermsClauses}
@@ -116,6 +127,7 @@ export const SalesInformation = (props: Props) => {
             fieldNames.selectLitigationCostClause
           )}
           value={inputData[fieldNames.selectLitigationCostClause]}
+          errors={errors[fieldNames.selectLitigationCostClause]}
         />
         <SelectInput
           options={selectOptions.specialTermsClauses}
@@ -125,6 +137,7 @@ export const SalesInformation = (props: Props) => {
             fieldNames.selectInitialSupportCaluse
           )}
           value={inputData[fieldNames.selectInitialSupportCaluse]}
+          errors={errors[fieldNames.selectInitialSupportCaluse]}
         />
         <SelectInput
           options={selectOptions.specialTermsClauses}
@@ -134,6 +147,7 @@ export const SalesInformation = (props: Props) => {
             fieldNames.selectManagerSpecialAgreementClause
           )}
           value={inputData[fieldNames.selectManagerSpecialAgreementClause]}
+          errors={errors[fieldNames.selectManagerSpecialAgreementClause]}
         />
       </div>
       <div className="flex-1 px-2">
@@ -151,6 +165,7 @@ export const SalesInformation = (props: Props) => {
             fieldNames.basicContractPaymentLimit
           )}
           value={inputData[fieldNames.basicContractPaymentLimit]}
+          errors={errors[fieldNames.basicContractPaymentLimit]}
         />
         <SelectInput
           options={selectOptions.basicContractDeductibleAmount}
@@ -160,6 +175,7 @@ export const SalesInformation = (props: Props) => {
             fieldNames.basicContractDeductibleAmount
           )}
           value={inputData[fieldNames.basicContractDeductibleAmount]}
+          errors={errors[fieldNames.basicContractDeductibleAmount]}
         />
         <h3 className="mt-3 sub-header">
           {t("Personal/property compensation (visiting nursing services) *1")}
@@ -172,6 +188,7 @@ export const SalesInformation = (props: Props) => {
             fieldNames.propertyCompensationPaymentLimit
           )}
           value={inputData[fieldNames.propertyCompensationPaymentLimit]}
+          errors={errors[fieldNames.propertyCompensationPaymentLimit]}
         />
 
         <div className=" mt-4">
@@ -287,6 +304,7 @@ export const SalesInformation = (props: Props) => {
             fieldNames.accidentsPaymentLimit
           )}
           value={inputData[fieldNames.accidentsPaymentLimit]}
+          errors={errors[fieldNames.accidentsPaymentLimit]}
         />
 
         <h3 className="mt-3 sub-header">{t("Economic accident")}</h3>

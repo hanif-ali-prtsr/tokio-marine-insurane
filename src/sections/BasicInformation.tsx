@@ -1,35 +1,24 @@
 import { partial } from "lodash";
-import { DateInput } from "./components/DateInput";
-import { SelectInput } from "./components/SelectInput";
-import { TextInput } from "./components/TextInput";
-import { t } from "./i18nConfig";
+import { DateInput } from "../components/DateInput";
+import { SelectInput } from "../components/SelectInput";
+import { TextInput } from "../components/TextInput";
+import { t } from "../i18nConfig";
 import {
   fieldNames,
   selectOptions,
   shouldDisplayNumberOfPaymentsField,
   shouldDisplayPaymentMethod2Field,
   shouldDisplayProvisionalPremiumRateField,
-} from "./utils";
+} from "../utils";
 
 interface Props {
   inputData: Record<any, any>;
   handleInputChange: (fieldName: string, value: any) => void;
+  errors: Record<any, any>;
 }
 
 export const BasicInformation = (props: Props) => {
-  const { inputData, handleInputChange } = props;
-
-  // const insurancePeriod = useMemo(() => {
-  //   const insurancePeriodStart = inputData[fieldNames.insurancePeriodStart];
-  //   const insurancePeriodEnd = inputData[fieldNames.insurancePeriodEnd];
-
-  //   if (!insurancePeriodStart || !insurancePeriodEnd) {
-  //     return null;
-  //   }
-  // }, [
-  //   inputData?.[fieldNames.insurancePeriodStart],
-  //   inputData?.[fieldNames.insurancePeriodEnd],
-  // ]);
+  const { inputData, handleInputChange, errors } = props;
 
   return (
     <div className="md:w-1/2 mx-auto">
@@ -43,6 +32,7 @@ export const BasicInformation = (props: Props) => {
               handleInputChange,
               fieldNames.insurancePeriodStart
             )}
+            errors={errors[fieldNames.insurancePeriodStart]}
           />
         </div>
         <p className="flex items-center">{t("to")}</p>
@@ -50,6 +40,7 @@ export const BasicInformation = (props: Props) => {
           <DateInput
             value={inputData[fieldNames.insurancePeriodEnd]}
             onChange={partial(handleInputChange, fieldNames.insurancePeriodEnd)}
+            errors={errors[fieldNames.insurancePeriodEnd]}
           />
         </div>
       </div>
@@ -64,6 +55,7 @@ export const BasicInformation = (props: Props) => {
               fieldNames.detailedActuarialDistinction
             )}
             value={inputData[fieldNames.detailedActuarialDistinction]}
+            errors={errors[fieldNames.detailedActuarialDistinction]}
           />
         </div>
         <div className="box flex items-center justify-center flex-1 pt-2 md:pt-0">
@@ -72,6 +64,7 @@ export const BasicInformation = (props: Props) => {
             label={t("Payment Method")}
             onChange={partial(handleInputChange, fieldNames.paymentMethod)}
             value={inputData[fieldNames.paymentMethod]}
+            errors={errors[fieldNames.paymentMethod]}
           />
         </div>
       </div>
@@ -88,6 +81,7 @@ export const BasicInformation = (props: Props) => {
                   fieldNames.provisionalPremiumRate
                 )}
                 value={inputData[fieldNames.provisionalPremiumRate]}
+                errors={errors[fieldNames.provisionalPremiumRate]}
               />
             </div>
             <div className="box flex items-end flex-1 pt-2 md:pt-0">
@@ -107,6 +101,7 @@ export const BasicInformation = (props: Props) => {
               label={t("Number of Payments")}
               onChange={partial(handleInputChange, fieldNames.numberOfPayments)}
               value={inputData[fieldNames.numberOfPayments]}
+              errors={errors[fieldNames.numberOfPayments]}
             />
           </div>
         )}
@@ -117,6 +112,7 @@ export const BasicInformation = (props: Props) => {
               label={t("Payment Method 2")}
               onChange={partial(handleInputChange, fieldNames.paymentMethod2)}
               value={inputData[fieldNames.paymentMethod2]}
+              errors={errors[fieldNames.paymentMethod2]}
             />
           </div>
         )}

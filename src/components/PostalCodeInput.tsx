@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import InputMask from "react-input-mask";
 import { ValidationErrors } from "./ValidationErrors";
 
 interface Props {
@@ -8,8 +9,8 @@ interface Props {
   onBlur?: (value: any) => void;
   errors?: string[];
 }
-export const TextInput = (props: Props) => {
-  const { label, type, value, onBlur, errors } = props;
+export const PostalCodeInput = (props: Props) => {
+  const { label, errors = [], type, value, onBlur } = props;
 
   const [inputValue, setInputValue] = useState(value);
 
@@ -18,7 +19,7 @@ export const TextInput = (props: Props) => {
   }, [value]);
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    const value = e.target.value;
+    const value = e.target.value
     setInputValue(value);
     onBlur?.(value);
   };
@@ -35,7 +36,8 @@ export const TextInput = (props: Props) => {
           {label}
         </label>
       )}
-      <input
+      <InputMask
+        mask="999-9999"
         type={type}
         className="
 					form-control
@@ -58,6 +60,7 @@ export const TextInput = (props: Props) => {
         onBlur={handleBlur}
         onChange={handleChange}
       />
+
       <ValidationErrors errors={errors} />
     </div>
   );

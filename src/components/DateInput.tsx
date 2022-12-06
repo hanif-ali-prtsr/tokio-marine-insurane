@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { ValidationErrors } from "./ValidationErrors";
 
 interface Props {
   label?: string;
   value?: any;
   onChange?: (value: any) => void;
+  errors?: string[];
 }
 export const DateInput = (props: Props) => {
-  const { label, value, onChange } = props;
+  const { label, value, onChange, errors } = props;
 
   const [dateValue, setDateValue] = useState<Date | null>(null);
 
@@ -42,6 +44,7 @@ export const DateInput = (props: Props) => {
         selected={dateValue}
         dateFormat="MM/dd/yyyy"
       />
+      <ValidationErrors errors={errors} />
     </div>
   );
 };

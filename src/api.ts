@@ -39,7 +39,12 @@ export class QuoteUrls {
   get formTemplateUrl() {
     return `${this.apiUrl}/form-templates/${this.formTemplateId}/`;
   }
-  // @formatter:on
+  get documentSetsUrl() {
+    return `${this.apiUrl}/document-sets/for_policy/?policyId=${this.policyId}`
+  }
+  documentSetRenderUrl(documentSetId: string) {
+    return `${this.apiUrl}/document-sets/${documentSetId}/render/?policyId=${this.policyId}`;
+  }
 }
 
 export const req = (method: string, url: string, data?: any) =>

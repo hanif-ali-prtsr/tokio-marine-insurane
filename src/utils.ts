@@ -1,3 +1,5 @@
+import { push } from "object-path-immutable";
+
 export const fieldNames = {
   insurancePeriodStart: "TYPE_WCalendarInput_9e27a9be8ac048ccaed6045f33e7b391",
   insurancePeriodEnd: "TYPE_WCalendarInput_73ab13044b2642f19702e2d31cdb8b91",
@@ -39,6 +41,16 @@ export const fieldNames = {
   propertyCompensationPaymentLimit:
     "TYPE_WSELECTIPUT_24f757e6c8ec47beba6bb9efbbf15ff6",
   accidentsPaymentLimit: "TYPE_WSELECTIPUT_1f26a5fccfd34b87a5cb32d1901a4abb",
+
+  policyNumber: "TYPE_WTEXTINPUT_5126da931ed547d29dd5809cd7b59a5d",
+  contractorName: "TYPE_WTEXTINPUT_4a3c9595e50043f0a08fb050e59dac7a",
+  remarksColumn: "TYPE_WTEXTINPUT_7e9b73fd5ceb438f9aa9e8a4c2270f37",
+  agencyCode: "TYPE_WTEXTINPUT_b2a7e69305014d978e85fef5c6f0b5b1",
+  agencyName: "TYPE_WTEXTINPUT_6a13a4495f9c4ce4bea21a593b5c0aad",
+  agencyAddress: "TYPE_WJAPANESEADDRESS_74c32d10152a4310a85afd68463e485e",
+  phoneNumber: "TYPE_WPhoneInput_97a621912d774fbb9309f9cd6bdace86",
+  fax: "TYPE_WTEXTINPUT_6a4a3c40c3044280bccdd66662cba83b",
+  communicationColumn: "TYPE_WTEXTINPUT_8d70dc5eb58e43b0be592af0fb13d241",
 };
 
 export const calculatedFieldName = {
@@ -134,6 +146,56 @@ export const selectOptions = {
     { label: "10,000", value: 10000 },
     { label: "100,000", value: 100000 },
   ],
+
+  prefecture: [
+    { label: "三重県", value: "三重県" },
+    { label: "京都府", value: "京都府" },
+    { label: "佐賀県", value: "佐賀県" },
+    { label: "兵庫県", value: "兵庫県" },
+    { label: "北海道", value: "北海道" },
+    { label: "千葉県", value: "千葉県" },
+    { label: "和歌山県", value: "和歌山県" },
+    { label: "埼玉県", value: "埼玉県" },
+    { label: "大分県", value: "大分県" },
+    { label: "大阪府", value: "大阪府" },
+    { label: "奈良県", value: "奈良県" },
+    { label: "宮城県", value: "宮城県" },
+    { label: "宮崎県", value: "宮崎県" },
+    { label: "富山県", value: "富山県" },
+    { label: "山口県", value: "山口県" },
+    { label: "山形県", value: "山形県" },
+    { label: "山梨県", value: "山梨県" },
+    { label: "岐阜県", value: "岐阜県" },
+    { label: "岡山県", value: "岡山県" },
+    { label: "岩手県", value: "岩手県" },
+    { label: "島根県", value: "島根県" },
+    { label: "広島県", value: "広島県" },
+    { label: "徳島県", value: "徳島県" },
+    { label: "愛媛県", value: "愛媛県" },
+    { label: "愛知県", value: "愛知県" },
+    { label: "新潟県", value: "新潟県" },
+    { label: "東京都", value: "東京都" },
+    { label: "栃木県", value: "栃木県" },
+    { label: "沖縄県", value: "沖縄県" },
+    { label: "滋賀県", value: "滋賀県" },
+    { label: "熊本県", value: "熊本県" },
+    { label: "石川県", value: "石川県" },
+    { label: "神奈川県", value: "神奈川県" },
+    { label: "福井県", value: "福井県" },
+    { label: "福岡県", value: "福岡県" },
+    { label: "福島県", value: "福島県" },
+    { label: "秋田県", value: "秋田県" },
+    { label: "群馬県", value: "群馬県" },
+    { label: "茨城県", value: "茨城県" },
+    { label: "長崎県", value: "長崎県" },
+    { label: "長野県", value: "長野県" },
+    { label: "青森県", value: "青森県" },
+    { label: "静岡県", value: "静岡県" },
+    { label: "香川県", value: "香川県" },
+    { label: "高知県", value: "高知県" },
+    { label: "鳥取県", value: "鳥取県" },
+    { label: "鹿児島県", value: "鹿児島県" },
+  ],
 };
 
 export const shouldDisplayNumberOfPaymentsField = (
@@ -163,4 +225,22 @@ export const shouldDisplayProvisionalPremiumRateField = (
   inputData: Record<string, any>
 ) => {
   return inputData[fieldNames.detailedActuarialDistinction] === "精算要";
+};
+
+// Type this in a better way
+export const convertErrorsArrayToDict = (errors: any[]): Record<any, any> => {
+  const quoteErrors = errors
+    .filter((error) => error.path)
+    .reduce((result, error) => push(result, error.path, error), {});
+
+  // Errors without path
+  // We display them under the inputs near the Calculate/Submit buttons
+  const nonFieldErrors = errors.filter((error) => !error.path);
+  if (nonFieldErrors.length) {
+    return {
+      ...quoteErrors,
+      formErrors: nonFieldErrors,
+    };
+  }
+  return quoteErrors;
 };

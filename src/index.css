@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: Hiragino;
-  src: url("../assets/hiragino-kaku-gothic-pro-w3.otf") format("opentype");
+  src: url('/hiragino-kaku-gothic-pro-w3.otf') format("opentype");
 }
 
 body {

@@ -23,17 +23,22 @@
     "i18next-parser": "^7.0.3",
     "lodash": "^4.17.21",
     "nodemon": "^2.0.20",
+    "object-path-immutable": "^4.1.2",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.0.1",
     "react-datepicker": "^4.8.0",
     "react-dom": "^18.2.0",
     "react-i18next": "^12.0.0",
-    "react-loading-overlay": "^1.0.1"
+    "react-input-mask": "^2.0.4",
+    "react-loading-overlay": "^1.0.1",
+    "react-spinners": "^0.13.6"
   },
   "devDependencies": {
+    "@types/node": "^18.11.10",
     "@types/react": "^18.0.24",
     "@types/react-datepicker": "^4.8.0",
     "@types/react-dom": "^18.0.8",
+    "@types/react-input-mask": "^3.0.2",
     "@types/react-loading-overlay": "^1.0.1",
     "@typescript-eslint/eslint-plugin": "^5.45.0",
     "@typescript-eslint/parser": "^5.45.0",
