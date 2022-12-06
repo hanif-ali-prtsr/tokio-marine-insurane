@@ -40,7 +40,7 @@ export class QuoteUrls {
     return `${this.apiUrl}/form-templates/${this.formTemplateId}/`;
   }
   get documentSetsUrl() {
-    return `${this.apiUrl}/document-sets/for_policy/?policyId=${this.policyId}`
+    return `${this.apiUrl}/document-sets/for_policy/?policyId=${this.policyId}`;
   }
   documentSetRenderUrl(documentSetId: string) {
     return `${this.apiUrl}/document-sets/${documentSetId}/render/?policyId=${this.policyId}`;
@@ -51,7 +51,7 @@ export const req = (method: string, url: string, data?: any) =>
   fetch(url, {
     cache: "no-cache",
     credentials: "include",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", "X-PRTSR-lang": "ja" },
     method,
     body: JSON.stringify(data),
   });

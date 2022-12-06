@@ -13,8 +13,8 @@ import { ClipLoader } from "react-spinners";
 import { triggerFileDownloadFromLink } from "./utils/download";
 
 const urls = new QuoteUrls(
-  // "https://api-demo.protosure.io/",
-  "http://localhost:10000/",
+  "https://api-demo.protosure.io/",
+  // "http://localhost:10000",
   "dfd4a7c9-ff31-4d29-865c-39da71b31b3b"
 );
 

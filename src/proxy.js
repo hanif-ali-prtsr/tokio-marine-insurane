@@ -17,6 +17,7 @@ proxy.on("proxyRes", function (proxyRes, req, res) {
     "OPTIONS, GET, HEAD, POST, PATCH";
   proxyRes.headers["Access-Control-Allow-Origin"] = req.headers.origin;
   proxyRes.headers["Access-Control-Allow-Credentials"] = true;
-  proxyRes.headers["Access-Control-Allow-Headers"] = "Content-Type";
+  proxyRes.headers["Access-Control-Allow-Headers"] =
+    "Content-Type, X-PRTSR-lang";
   delete proxyRes.headers["connection"];
 });
