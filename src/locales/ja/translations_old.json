@@ -11,5 +11,6 @@
   "If there is an error, the premium will not be displayed": {
     " Please check the regulations and enter correctly": ""
   },
-  "[Economic damage]": "サービス利用者捜索費用"
+  "[Economic damage]": "サービス利用者捜索費用",
+  "Basic contract premium *2\t({{percentage}})": ""
 }

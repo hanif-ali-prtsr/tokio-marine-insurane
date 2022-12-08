@@ -24,7 +24,7 @@ export const PremiumOutput = (props: Props) => {
         <Table>
           <TableRow>
             <TableCell className="bg-pink font-bold">
-              {t("Basic contract premium *2	")}
+              {t("Basic contract premium *2")}
             </TableCell>
             <TableCell className="font-bold text-right">
               {raterData[raterFieldNames.baseContractPremium]} {t("Yen")}
@@ -33,7 +33,7 @@ export const PremiumOutput = (props: Props) => {
           <TableRow>
             <TableCell className="bg-pink font-bold">
               {t(
-                "Lawyer's fees collateral special clause (for business) insurance premium	"
+                "Lawyer's fees collateral special clause (for business) insurance premium"
               )}
             </TableCell>
             <TableCell className="font-bold text-right">
@@ -43,7 +43,7 @@ export const PremiumOutput = (props: Props) => {
           <TableRow>
             <TableCell className="bg-pink font-bold">
               {t(
-                "Service User Search Expense Guarantee Covenant Insurance Premium	"
+                "Service User Search Expense Guarantee Covenant Insurance Premium"
               )}
             </TableCell>
             <TableCell className="font-bold text-right">
@@ -53,7 +53,7 @@ export const PremiumOutput = (props: Props) => {
           <TableRow>
             <TableCell className="bg-pink font-bold">
               {t(
-                "Specified Infectious Disease Coverage Covenant Insurance premium	"
+                "Specified Infectious Disease Coverage Covenant Insurance premium"
               )}
             </TableCell>
             <TableCell className="font-bold text-right">
@@ -63,7 +63,7 @@ export const PremiumOutput = (props: Props) => {
           <TableRow>
             <TableCell className="bg-pink font-bold">
               {t(
-                "Victim medical expenses collateral covenant Insurance premium	"
+                "Victim medical expenses collateral covenant Insurance premium"
               )}
             </TableCell>
             <TableCell className="font-bold text-right">
@@ -73,7 +73,7 @@ export const PremiumOutput = (props: Props) => {
           </TableRow>
           <TableRow>
             <TableCell className="bg-pink font-bold">
-              {t("Litigation cost guarantee covenant insurance premium	")}
+              {t("Litigation cost guarantee covenant insurance premium")}
             </TableCell>
             <TableCell className="font-bold text-right">
               {raterData[raterFieldNames.litigationCostPremium]} {t("Yen")}
@@ -81,7 +81,7 @@ export const PremiumOutput = (props: Props) => {
           </TableRow>
           <TableRow>
             <TableCell className="bg-pink font-bold">
-              {t("1 time premium	")}
+              {t("1 time premium")}
             </TableCell>
             <TableCell className="font-bold text-right">
               {raterData[raterFieldNames.oneTimePremium]} {t("Yen")}
@@ -89,7 +89,7 @@ export const PremiumOutput = (props: Props) => {
           </TableRow>
           <TableRow>
             <TableCell className="bg-pink font-bold">
-              {t("Total premium paid	")}
+              {t("Total premium paid")}
             </TableCell>
             <TableCell className="font-bold text-right">
               {raterData[raterFieldNames.totalPremiumPaid]} {t("Yen")}
@@ -97,7 +97,7 @@ export const PremiumOutput = (props: Props) => {
           </TableRow>
           <TableRow>
             <TableCell className="bg-pink font-bold">
-              {t("Minimum premium paid	")}
+              {t("Minimum premium paid")}
             </TableCell>
             <TableCell className="font-bold text-right">
               {raterData[raterFieldNames.minmumPremiumPaid]} {t("Yen")}
@@ -105,7 +105,7 @@ export const PremiumOutput = (props: Props) => {
           </TableRow>
         </Table>
       </div>
-      <div className="flex-1 flex items-center justify-center mt-8 max-h-[370px] md:w-1/2 md:p-4 md:mt-0">
+      <div className="flex-1 flex items-center justify-center mt-8 max-h-[370px] md:w-3/4 md:p-4 md:mt-0">
         {chartHasData ? (
           <PieChart data={chartsData} label={t("Cost")} />
         ) : (
@@ -123,7 +123,7 @@ const getPremiumField = (raterData: Record<any, any>, fieldName: string) => {
   if (typeof value === "number") return value;
   if (typeof value === "string") {
     return parseFloat(value.replace(",", ""));
-  } else return value;
+  } else return 0;
 };
 
 const getChartsData = (raterData: Props["raterData"]) => {
@@ -152,33 +152,46 @@ const getChartsData = (raterData: Props["raterData"]) => {
     raterFieldNames.litigationCostPremium
   );
 
+  const totalPremium =
+    basicContractPremium +
+    lawyerFeesCollateral +
+    serviceUserSearchPremium +
+    infectiousDiseasePremium +
+    victimMedicalExpensesPremium +
+    litigationCostPremium;
+
   return [
-    { label: t("Basic contract premium *2	"), value: basicContractPremium },
+    { label: t("Basic contract premium *2") + `  (${getPercentageString(basicContractPremium, totalPremium)})`, value: basicContractPremium },
     {
       label: t(
-        "Lawyer's fees collateral special clause (for business) insurance premium	"
-      ),
+        "Lawyer's fees collateral special clause (for business) insurance premium"
+      ) + `  (${getPercentageString(lawyerFeesCollateral, totalPremium)})`,
       value: lawyerFeesCollateral,
     },
     {
       label: t(
-        "Service User Search Expense Guarantee Covenant Insurance Premium	"
-      ),
+        "Service User Search Expense Guarantee Covenant Insurance Premium"
+      ) + `  (${getPercentageString(serviceUserSearchPremium, totalPremium)})`,
       value: serviceUserSearchPremium,
     },
     {
       label: t(
-        "Specified Infectious Disease Coverage Covenant Insurance premium	"
-      ),
+        "Specified Infectious Disease Coverage Covenant Insurance premium"
+      ) + `  (${getPercentageString(infectiousDiseasePremium, totalPremium)})`,
       value: infectiousDiseasePremium,
     },
     {
-      label: t("Victim medical expenses collateral covenant Insurance premium	"),
+      label: t("Victim medical expenses collateral covenant Insurance premium") + `  (${getPercentageString(victimMedicalExpensesPremium, totalPremium)})`,
       value: victimMedicalExpensesPremium,
     },
     {
-      label: t("Litigation cost guarantee covenant insurance premium	"),
+      label: t("Litigation cost guarantee covenant insurance premium") + `  (${getPercentageString(litigationCostPremium, totalPremium)})`,
       value: litigationCostPremium,
     },
   ];
 };
+
+const getPercentageString = (value: number, total: number) => { 
+  const percentage = ((value / total) * 100).toFixed(1);; 
+  return `${percentage}%`;
+}
