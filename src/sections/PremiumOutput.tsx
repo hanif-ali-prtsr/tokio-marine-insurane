@@ -26,7 +26,7 @@ export const PremiumOutput = (props: Props) => {
             <TableCell className="bg-pink font-bold">
               {t("Basic contract premium *2	")}
             </TableCell>
-            <TableCell className="font-bold">
+            <TableCell className="font-bold text-right">
               {raterData[raterFieldNames.baseContractPremium]} {t("Yen")}
             </TableCell>
           </TableRow>
@@ -36,7 +36,7 @@ export const PremiumOutput = (props: Props) => {
                 "Lawyer's fees collateral special clause (for business) insurance premium	"
               )}
             </TableCell>
-            <TableCell className="font-bold">
+            <TableCell className="font-bold text-right">
               {raterData[raterFieldNames.lawyerFeesCollateral]} {t("Yen")}
             </TableCell>
           </TableRow>
@@ -46,7 +46,7 @@ export const PremiumOutput = (props: Props) => {
                 "Service User Search Expense Guarantee Covenant Insurance Premium	"
               )}
             </TableCell>
-            <TableCell className="font-bold">
+            <TableCell className="font-bold text-right">
               {raterData[raterFieldNames.serviceUserSearchPremium]} {t("Yen")}
             </TableCell>
           </TableRow>
@@ -56,7 +56,7 @@ export const PremiumOutput = (props: Props) => {
                 "Specified Infectious Disease Coverage Covenant Insurance premium	"
               )}
             </TableCell>
-            <TableCell className="font-bold">
+            <TableCell className="font-bold text-right">
               {raterData[raterFieldNames.infectiousDiseasePremium]} {t("Yen")}
             </TableCell>
           </TableRow>
@@ -66,7 +66,7 @@ export const PremiumOutput = (props: Props) => {
                 "Victim medical expenses collateral covenant Insurance premium	"
               )}
             </TableCell>
-            <TableCell className="font-bold">
+            <TableCell className="font-bold text-right">
               {raterData[raterFieldNames.victimMedicalExpensesPremium]}{" "}
               {t("Yen")}
             </TableCell>
@@ -75,7 +75,7 @@ export const PremiumOutput = (props: Props) => {
             <TableCell className="bg-pink font-bold">
               {t("Litigation cost guarantee covenant insurance premium	")}
             </TableCell>
-            <TableCell className="font-bold">
+            <TableCell className="font-bold text-right">
               {raterData[raterFieldNames.litigationCostPremium]} {t("Yen")}
             </TableCell>
           </TableRow>
@@ -83,7 +83,7 @@ export const PremiumOutput = (props: Props) => {
             <TableCell className="bg-pink font-bold">
               {t("1 time premium	")}
             </TableCell>
-            <TableCell className="font-bold">
+            <TableCell className="font-bold text-right">
               {raterData[raterFieldNames.oneTimePremium]} {t("Yen")}
             </TableCell>
           </TableRow>
@@ -91,7 +91,7 @@ export const PremiumOutput = (props: Props) => {
             <TableCell className="bg-pink font-bold">
               {t("Total premium paid	")}
             </TableCell>
-            <TableCell className="font-bold">
+            <TableCell className="font-bold text-right">
               {raterData[raterFieldNames.totalPremiumPaid]} {t("Yen")}
             </TableCell>
           </TableRow>
@@ -99,7 +99,7 @@ export const PremiumOutput = (props: Props) => {
             <TableCell className="bg-pink font-bold">
               {t("Minimum premium paid	")}
             </TableCell>
-            <TableCell className="font-bold">
+            <TableCell className="font-bold text-right">
               {raterData[raterFieldNames.minmumPremiumPaid]} {t("Yen")}
             </TableCell>
           </TableRow>

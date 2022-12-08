@@ -7,9 +7,10 @@ interface Props {
   value?: any;
   onBlur?: (value: any) => void;
   errors?: string[];
+  disabled?: boolean;
 }
 export const TextInput = (props: Props) => {
-  const { label, type, value, onBlur, errors } = props;
+  const { label, type, value, onBlur, errors, disabled=false } = props;
 
   const [inputValue, setInputValue] = useState(value);
 
@@ -57,6 +58,7 @@ export const TextInput = (props: Props) => {
         value={inputValue}
         onBlur={handleBlur}
         onChange={handleChange}
+        disabled={disabled}
       />
       <ValidationErrors errors={errors} />
     </div>

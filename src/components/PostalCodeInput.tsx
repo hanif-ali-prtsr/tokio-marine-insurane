@@ -8,9 +8,10 @@ interface Props {
   value?: any;
   onBlur?: (value: any) => void;
   errors?: string[];
+  disabled?: boolean
 }
 export const PostalCodeInput = (props: Props) => {
-  const { label, errors = [], type, value, onBlur } = props;
+  const { label, errors = [], type, value, onBlur, disabled=false } = props;
 
   const [inputValue, setInputValue] = useState(value);
 
@@ -37,6 +38,7 @@ export const PostalCodeInput = (props: Props) => {
         </label>
       )}
       <InputMask
+        disabled={disabled}
         mask="999-9999"
         type={type}
         className="

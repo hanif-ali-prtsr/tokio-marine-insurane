@@ -7,9 +7,10 @@ interface Props {
   onChange?: (value: string | number) => void;
   value?: any;
   errors?: string[];
+  disabled?: boolean;
 }
 export const SelectInput = (props: Props) => {
-  const { label, options, onChange, value, errors } = props;
+  const { label, options, onChange, value, errors, disabled } = props;
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     onChange?.(e.target.value);
@@ -23,6 +24,7 @@ export const SelectInput = (props: Props) => {
         </label>
       )}
       <select
+        disabled={disabled}
         className="
           h-[36px]
 					form-control

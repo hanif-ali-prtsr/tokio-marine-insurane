@@ -13,8 +13,8 @@ import { ClipLoader } from "react-spinners";
 import { triggerFileDownloadFromLink } from "./utils/download";
 
 const urls = new QuoteUrls(
-  "https://api-demo.protosure.io/",
-  // "http://localhost:10000",
+  // "https://api-demo.protosure.io/",
+  "http://localhost:10000",
   "dfd4a7c9-ff31-4d29-865c-39da71b31b3b"
 );
 
@@ -24,7 +24,7 @@ export const QuoteForm = () => {
   const [calculating, setCalculating] = useState(false);
   const [inputData, setInputData] = useState<Record<any, any>>({});
   const [raterErrors, setRaterErrors] = useState<string[]>([]);
-  const [quoteErrors, setQuoteErrors] = useState<Record<any, any>>({})
+  const [quoteErrors, setQuoteErrors] = useState<Record<any, any>>({});
 
   const [documentSets, setDocumentSets] = useState<any[]>([]);
   const [updatingDocumentSets, setUpdatingDocumentSets] =
@@ -34,8 +34,8 @@ export const QuoteForm = () => {
     const newInputData = { ...inputData, [fieldName]: value };
     setInputData(newInputData);
 
-    if (fieldName === fieldNames.contractorName){
-      setUpdatingDocumentSets(true)
+    if (fieldName === fieldNames.contractorName) {
+      setUpdatingDocumentSets(true);
     }
 
     const newQuote = await (
@@ -57,7 +57,7 @@ export const QuoteForm = () => {
     urls.quoteId = data.id;
     urls.policyId = data.policy;
     setLoading(false);
-    updateDocumentSets()
+    updateDocumentSets();
   };
 
   const handleCalculate = async () => {
@@ -65,15 +65,14 @@ export const QuoteForm = () => {
     const calculationResponse = await (
       await req("POST", urls.calculateUrl)
     ).json();
-    if (calculationResponse.quoteErrors){
-      console.log(convertErrorsArrayToDict(calculationResponse.quoteErrors))
-      setQuoteErrors(convertErrorsArrayToDict(calculationResponse.quoteErrors))
-    }
-    else{
+    if (calculationResponse.quoteErrors) {
+      console.log(convertErrorsArrayToDict(calculationResponse.quoteErrors));
+      setQuoteErrors(convertErrorsArrayToDict(calculationResponse.quoteErrors));
+    } else {
       setQuote({ ...quote, raterData: calculationResponse.raterData });
-      setQuoteErrors([])
-      setCalculating(false);
+      setQuoteErrors([]);
     }
+    setCalculating(false);
   };
 
   useEffect(() => {
@@ -82,21 +81,22 @@ export const QuoteForm = () => {
 
   const updateDocumentSets = async () => {
     setUpdatingDocumentSets(true);
-    if (!inputData[fieldNames.contractorName]) {
-      setDocumentSets([]);
-      setUpdatingDocumentSets(false);
-      return;
-    }
     const documentSets = await (await req("GET", urls.documentSetsUrl)).json();
     setDocumentSets(documentSets);
     setUpdatingDocumentSets(false);
   };
 
   const handleDownloadData = async () => {
-    const documentUrls = documentSets.map((docSet) =>
-      urls.documentSetRenderUrl(docSet.id)
-    );
-    documentUrls.map((link) => triggerFileDownloadFromLink(link));
+    setUpdatingDocumentSets(true);
+    try {
+      await handleCalculate();
+      const documentUrls = documentSets.map((docSet) =>
+        urls.documentSetRenderUrl(docSet.id)
+      );
+      documentUrls.map((link) => triggerFileDownloadFromLink(link));
+    } finally {
+      setUpdatingDocumentSets(false);
+    }
   };
 
   useEffect(() => {
@@ -162,11 +162,12 @@ export const QuoteForm = () => {
             inputData={inputData}
             handleInputChange={handleInputChange}
             errors={quoteErrors}
+            api={urls}
           />
 
           <div className="mt-8 flex justify-center">
             <button
-              className="bg-blue-500 hover:bg-blue-600 disabled:bg-gray-400 text-white  font-bold py-2 px-4 rounded inline-flex items-center w-[195px] h-[38px] justify-center"
+              className="bg-blue-500 hover:bg-blue-600 disabled:bg-gray-400 text-white  font-bold py-2 px-4 rounded inline-flex items-center w-[210px] h-[38px] justify-center"
               disabled={!(documentSets.length > 0) || updatingDocumentSets}
               onClick={handleDownloadData}
             >

@@ -45,6 +45,9 @@ export class QuoteUrls {
   documentSetRenderUrl(documentSetId: string) {
     return `${this.apiUrl}/document-sets/${documentSetId}/render/?policyId=${this.policyId}`;
   }
+  lookupJapanesePostCodeUrl(postCode: string) {
+    return `${this.apiUrl}/widgets/wjapaneseaddress/lookup/?postalCode=${postCode}`;
+  }
 }
 
 export const req = (method: string, url: string, data?: any) =>
