@@ -1,3 +1,16 @@
+class ProtosureURLBuilder{
+  
+}
+class ProtosureAPI {
+  private host: string;
+  private tenantId: string;
+
+  constructor(host: string, tenantId: string) {
+    this.host = host;
+    this.tenantId = tenantId;
+  }
+}
+
 export class QuoteUrls {
   quoteId?: string;
   policyId?: string;

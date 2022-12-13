@@ -13,13 +13,14 @@ import { ClipLoader } from "react-spinners";
 import { triggerFileDownloadFromLink } from "./utils/download";
 
 const urls = new QuoteUrls(
-  // "https://api-demo.protosure.io/",
-  "http://localhost:10000",
+  "https://api-demo.protosure.io/",
+  // "http://localhost:10000",
   "dfd4a7c9-ff31-4d29-865c-39da71b31b3b"
 );
 
 export const QuoteForm = () => {
   const [quote, setQuote] = useState<Record<any, any>>({});
+  const [raterData, setRaterData] = useState<Record<any, any>>({})
   const [loading, setLoading] = useState(true);
   const [calculating, setCalculating] = useState(false);
   const [inputData, setInputData] = useState<Record<any, any>>({});
@@ -53,6 +54,7 @@ export const QuoteForm = () => {
   const getQuote = async () => {
     const data = await (await req("POST", urls.getOrCreateQuoteUrl)).json();
     setQuote(data ?? {});
+    setRaterData(data?.raterData ?? {})
     setInputData(data.inputData);
     urls.quoteId = data.id;
     urls.policyId = data.policy;
@@ -66,10 +68,10 @@ export const QuoteForm = () => {
       await req("POST", urls.calculateUrl)
     ).json();
     if (calculationResponse.quoteErrors) {
-      console.log(convertErrorsArrayToDict(calculationResponse.quoteErrors));
       setQuoteErrors(convertErrorsArrayToDict(calculationResponse.quoteErrors));
+      setRaterData({})
     } else {
-      setQuote({ ...quote, raterData: calculationResponse.raterData });
+      setRaterData(calculationResponse.raterData ?? {});
       setQuoteErrors([]);
     }
     setCalculating(false);
@@ -102,12 +104,12 @@ export const QuoteForm = () => {
   useEffect(() => {
     setRaterErrors(
       [
-        quote.raterData?.output_error1,
-        quote.raterData?.output_error2,
-        quote.raterData?.output_error3,
+        raterData?.output_error1,
+        raterData?.output_error2,
+        raterData?.output_error3,
       ].filter((val) => Boolean(val))
     );
-  }, [quote]);
+  }, [raterData]);
 
   return (
     <>
@@ -154,7 +156,7 @@ export const QuoteForm = () => {
             />
           </div>
           {raterErrors.length > 0 && <QuoteErrors errors={raterErrors} />}
-          <PremiumOutput raterData={quote.raterData ?? {}} />
+          <PremiumOutput raterData={raterData} />
 
           <hr className="my-8" />
 

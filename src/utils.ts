@@ -81,24 +81,6 @@ export const selectOptions = {
     { label: "精算不要", value: "精算不要" },
     { label: "精算要", value: "精算要" },
   ],
-  paymentMethod: [
-    // { label: "口座振替・一時払", value: "口座振替・一時払" },
-    // { label: "口座振替・月払", value: "口座振替・月払" },
-    // { label: "請求書・一時払", value: "請求書・一時払" },
-    // { label: "直接集金・一時払", value: "口座振替・一時払" },
-    // { label: "直接集金・月払", value: "直接集金・月払" },
-    { label: "直接集金・均等払・2か月毎", value: "直接集金・均等払・2か月毎" },
-    { label: "直接集金・均等払・3か月毎", value: "直接集金・均等払・3か月毎" },
-    { label: "直接集金・均等払・4か月毎", value: "直接集金・均等払・4か月毎" },
-    { label: "直接集金・均等払・6か月毎", value: "直接集金・均等払・6か月毎" },
-    // { label: "直接集金・一時払", value: "直接集金・一時払" },
-    // { label: "直接集金・月払", value: "直接集金・月払" },
-    { label: "口座振替・一時払", value: "口座振替・一時払" },
-    { label: "口座振替・月払", value: "口座振替・月払" },
-    { label: "請求書・一時払", value: "請求書・一時払" },
-    { label: "直接集金・一時払", value: "直接集金・一時払" },
-    { label: "直接集金・月払", value: "直接集金・月払" },
-  ],
   numberOfPayments: [
     { label: "1", value: 1 },
     { label: "2", value: 2 },
@@ -196,6 +178,78 @@ export const selectOptions = {
     { label: "鳥取県", value: "鳥取県" },
     { label: "鹿児島県", value: "鹿児島県" },
   ],
+};
+
+const getDateFromString = (stringDate: string) => {
+  const parts = stringDate.split("/");
+  return new Date(
+    parseInt(parts[2]),
+    parseInt(parts[0]) - 1,
+    parseInt(parts[1])
+  );
+};
+
+function monthDiff(d1: Date, d2: Date) {
+  var months;
+  months = (d2.getFullYear() - d1.getFullYear()) * 12;
+  months -= d1.getMonth();
+  months += d2.getMonth();
+  return months <= 0 ? 0 : months;
+}
+
+export const getSelectOptions = {
+  paymentMethod: (inputData: any) => {
+    const startDateString = inputData[fieldNames.insurancePeriodStart];
+    const endDateString = inputData[fieldNames.insurancePeriodEnd];
+
+    if (!startDateString || !endDateString) {
+      return [];
+    }
+
+    const startDate = getDateFromString(startDateString);
+    const endDate = getDateFromString(endDateString);
+    const monthsDifference = monthDiff(startDate, endDate);
+
+    if (monthsDifference >= 12) {
+      return [
+        { label: "口座振替・一時払", value: "口座振替・一時払" },
+        { label: "口座振替・月払", value: "口座振替・月払" },
+        { label: "請求書・一時払", value: "請求書・一時払" },
+        { label: "直接集金・一時払", value: "口座振替・一時払" },
+        { label: "直接集金・月払", value: "直接集金・月払" },
+        {
+          label: "直接集金・均等払・2か月毎",
+          value: "直接集金・均等払・2か月毎",
+        },
+        {
+          label: "直接集金・均等払・3か月毎",
+          value: "直接集金・均等払・3か月毎",
+        },
+        {
+          label: "直接集金・均等払・4か月毎",
+          value: "直接集金・均等払・4か月毎",
+        },
+        {
+          label: "直接集金・均等払・6か月毎",
+          value: "直接集金・均等払・6か月毎",
+        },
+      ];
+    }
+
+    if (monthsDifference >= 3) {
+      return [
+        { label: "直接集金・一時払", value: "直接集金・一時払" },
+        { label: "直接集金・月払", value: "直接集金・月払" },
+      ];
+    }
+    return [
+      { label: "口座振替・一時払", value: "口座振替・一時払" },
+      { label: "口座振替・月払", value: "口座振替・月払" },
+      { label: "請求書・一時払", value: "請求書・一時払" },
+      { label: "直接集金・一時払", value: "直接集金・一時払" },
+      { label: "直接集金・月払", value: "直接集金・月払" },
+    ];
+  },
 };
 
 export const shouldDisplayNumberOfPaymentsField = (

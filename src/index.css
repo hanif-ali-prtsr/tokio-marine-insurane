@@ -2,14 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: Hiragino;
-  src: url('/hiragino-kaku-gothic-pro-w3.otf') format("opentype");
-}
-
 body {
   font-size: 0.9rem;
-  font-family: Arial, Hiragino
+  font-family: Arial
 }
 
 * {

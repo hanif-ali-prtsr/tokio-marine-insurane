@@ -8,10 +8,21 @@ export const ValidationErrors = (props: Props) => {
     return (
       <div className="mt-1">
         {errors.map((error, index) => (
-          <p className="text-red-500 text-xs" key={index}>* {error.message}</p>
+          <p
+            className="text-red-500 text-xs"
+            style={{ color: error.color }}
+            key={index}
+          >
+            *{" "}
+            {/* The API does not seem to have translation for this particular string. So I'm hardcoding the 
+            Japanese translation here. */}
+            {error.message === "Field is required"
+              ? "このフィールドは必須です"
+              : error.message}
+          </p>
         ))}
       </div>
     );
   }
-	return null
+  return null;
 };

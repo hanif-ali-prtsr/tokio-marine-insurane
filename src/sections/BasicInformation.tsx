@@ -5,6 +5,7 @@ import { TextInput } from "../components/TextInput";
 import { t } from "../i18nConfig";
 import {
   fieldNames,
+  getSelectOptions,
   selectOptions,
   shouldDisplayNumberOfPaymentsField,
   shouldDisplayPaymentMethod2Field,
@@ -60,7 +61,7 @@ export const BasicInformation = (props: Props) => {
         </div>
         <div className="box flex items-center justify-center flex-1 pt-2 md:pt-0">
           <SelectInput
-            options={selectOptions.paymentMethod}
+            options={getSelectOptions.paymentMethod(inputData)}
             label={t("Payment Method")}
             onChange={partial(handleInputChange, fieldNames.paymentMethod)}
             value={inputData[fieldNames.paymentMethod]}
